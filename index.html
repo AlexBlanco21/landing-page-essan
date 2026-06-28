@@ -459,7 +459,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 1.5rem;
+    gap: 0rem;
   }
   .specs-visual p {
     font-size: 0.75rem;
@@ -468,9 +468,11 @@
     color: rgba(255,255,255,0.3);
   }
   .planos-img { width: 100%; max-width: 520px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.12); box-shadow: 0 8px 24px rgba(0,0,0,0.25); background: rgba(255,255,255,0.02); }
-  .planos-actions { display: flex; gap: .6rem; flex-wrap: wrap; justify-content: center; }
+  .planos-frame { width: 100%; max-width: 520px; height: 640px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.12); box-shadow: 0 8px 24px rgba(0,0,0,0.25); background: rgba(255,255,255,0.02); display:block; vertical-align: top; margin: 0; }
+  .planos-actions { display: flex; gap: .6rem; flex-wrap: wrap; justify-content: center; margin-top: 0; }
   .btn-ghost { background: transparent; color: var(--white); border: 1px solid rgba(255,255,255,0.14); padding: 0.55rem .9rem; border-radius: 8px; text-decoration: none; font-size: .85rem; }
   .btn-ghost:hover { border-color: var(--oak-light); color: var(--oak-light); }
+  .btn-ghost[disabled] { opacity: 0.5; cursor: not-allowed; }
 
   /* Modal for Technical Note */
   .modal-backdrop { position: fixed; inset: 0; background: rgba(0,0,0,0.55); display: none; align-items: center; justify-content: center; z-index: 1000; }
@@ -551,7 +553,8 @@
 
   /* ── PERSONALIZACIÓN ── */
   #personalizacion { background: var(--white); }
-  .custom-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; margin-top: 2.5rem; }
+  /* Make product options use full width on desktop too */
+  .custom-layout { display: grid; grid-template-columns: 1fr; gap: 3rem; margin-top: 2.5rem; }
   .custom-group h3 {
     font-size: 0.78rem;
     letter-spacing: 0.14em;
@@ -562,7 +565,8 @@
   /* Arrange swatches to the left of preview and center config below */
   .custom-colors {
     display: grid;
-    grid-template-columns: minmax(140px, 240px) 1fr;
+    /* Wider swatch rail and large preview area */
+    grid-template-columns: minmax(180px, 360px) 1fr;
     grid-template-areas:
       "title title"
       "swatches preview";
@@ -573,7 +577,7 @@
   .custom-colors .swatch-wrap { grid-area: swatches; }
   .custom-colors .product-preview { grid-area: preview; margin-bottom: 0; }
   .custom-config { grid-column: 1 / -1; }
-  .custom-config h3 { text-align: center; }
+  .custom-config h3 { text-align: left; }
   .config-chips { align-items: center; }
   .color-swatches { display: flex; gap: 0.6rem; flex-wrap: wrap; }
   .swatch {
@@ -597,7 +601,10 @@
   .chip input[type="checkbox"] { width: 18px; height: 18px; accent-color: var(--oak); }
 
   .product-preview { background: var(--sand); border: 1px solid var(--sand-dark); border-radius: var(--radius-md); padding: 0.8rem; margin-bottom: 1.2rem; display: grid; gap: 0.4rem; }
-  .product-preview img { width: 100%; height: auto; display: block; border-radius: 8px; background: #202B38; }
+  /* Enlarge preview image while keeping aspect */
+  .product-preview img { width: 100%; height: auto; max-height: 72vh !important; display: block; border-radius: 8px; background: #202B38; object-fit: contain; }
+  /* Center WhatsApp CTA under config */
+  #btn-pedir { display: block; width: fit-content; margin: 1.2rem auto 0; }
   .preview-note { font-size: 0.72rem; color: var(--ink-light); text-align: center; }
   /* Horizontal grid for configuration chips */
   .config-chips {
@@ -1141,12 +1148,14 @@
       <p class="specs-note">Capacidades válidas para carga uniformemente distribuida. Evitar impactos o cargas puntuales concentradas.</p>
     </div>
     <div class="specs-visual">
-      <img id="planos-img" class="planos-img" alt="Planos estimados NÓRDIC 12" src=""/>
+      <iframe id="planos-frame" class="planos-frame" title="Vista de planos PDF"></iframe>
       <div class="planos-actions">
-        <a id="download-planos" class="btn-ghost" href="#" download="planos-estimados.jpg">Descargar JPG</a>
-        <a id="regen-planos" class="btn-ghost" href="#">Regenerar diagrama</a>
+        <button id="plano-prev" class="btn-ghost" type="button" aria-label="Plano anterior">←</button>
+        <span id="plano-indicator" style="align-self:center;font-size:.85rem;color:rgba(255,255,255,0.85)">Plano 1 de 5</span>
+        <button id="plano-next" class="btn-ghost" type="button" aria-label="Siguiente plano">→</button>
+        <a id="download-planos" class="btn-ghost" href="planos/Plano1.pdf" download>Descargar PDF</a>
       </div>
-      <p>Diagrama de referencia</p>
+      <p>Planos de referencia</p>
       
     </div>
   </div>
@@ -1708,84 +1717,39 @@
     backdrop?.addEventListener('click', (e)=>{ if(e.target===backdrop) close(); });
   })();
 
-  // Generate planos JPG dynamically using Canvas and keep palette
-  (function planosGenerator(){
-    function drawPlanos() {
-      const W = 900, H = 600;
-      const canvas = document.createElement('canvas');
-      canvas.width = W; canvas.height = H;
-      const ctx = canvas.getContext('2d');
-      // palette
-      const sand = '#F5F0E8', ink = '#1A1814', oak = '#B8956A', oakLight = '#D4B896';
-      // background
-      ctx.fillStyle = sand; ctx.fillRect(0,0,W,H);
-      // title strip
-      ctx.fillStyle = '#EDE6D8'; ctx.fillRect(0,0,W,56);
-      ctx.fillStyle = ink; ctx.font = '600 22px Inter, Arial';
-      ctx.fillText('NÓRDIC 12 — Planos estimados', 24, 36);
+  // Ficha técnica: visor de PDF con navegación entre planos 1-5
+  (function planosPdfViewer(){
+    const iframe = document.getElementById('planos-frame');
+    const prevBtn = document.getElementById('plano-prev');
+    const nextBtn = document.getElementById('plano-next');
+    const indicator = document.getElementById('plano-indicator');
+    const download = document.getElementById('download-planos');
+    if (!iframe || !prevBtn || !nextBtn || !indicator || !download) return;
 
-      // helpers
-      function panel(x,y,w,h,label){
-        ctx.save();
-        ctx.strokeStyle = oak; ctx.lineWidth = 2; ctx.fillStyle = 'rgba(184,149,106,0.07)';
-        ctx.fillRect(x,y,w,h); ctx.strokeRect(x,y,w,h);
-        ctx.fillStyle = ink; ctx.font = '600 14px Inter, Arial';
-        ctx.fillText(label, x, y-10);
-        ctx.restore();
-      }
-      function shelf(x,y,w){ ctx.strokeStyle = oakLight; ctx.lineWidth = 2; ctx.beginPath(); ctx.moveTo(x,y); ctx.lineTo(x+w,y); ctx.stroke(); }
-      function legs(x,y,w,h){ ctx.fillStyle = 'rgba(184,149,106,0.2)'; ctx.fillRect(x,y,w,h); }
-      function dimH(x1,y,x2,text){
-        ctx.strokeStyle = '#A88C64'; ctx.lineWidth = 1; ctx.setLineDash([6,4]);
-        ctx.beginPath(); ctx.moveTo(x1,y); ctx.lineTo(x2,y); ctx.stroke(); ctx.setLineDash([]);
-        ctx.fillStyle = '#8A6F4B'; ctx.font='12px Inter,Arial'; ctx.textAlign='center'; ctx.fillText(text,(x1+x2)/2,y-6);
-      }
-      function dimV(x,y1,y2,text){
-        ctx.strokeStyle = '#A88C64'; ctx.lineWidth = 1; ctx.setLineDash([6,4]);
-        ctx.beginPath(); ctx.moveTo(x,y1); ctx.lineTo(x,y2); ctx.stroke(); ctx.setLineDash([]);
-        ctx.fillStyle = '#8A6F4B'; ctx.font='12px Inter,Arial'; ctx.textAlign='left'; ctx.save();
-        ctx.translate(x+6,(y1+y2)/2); ctx.rotate(-Math.PI/2); ctx.fillText(text,0,0); ctx.restore();
-      }
+    const files = [1,2,3,4,5].map(n => `planos/Plano${n}.pdf`);
+    let idx = 0; // start at Plano1
 
-      // Front view
-      const fx=70, fy=120, fw=300, fh=320;
-      panel(fx,fy,fw,fh,'Frontal');
-      shelf(fx+14, fy+120, fw-28);
-      legs(fx+14, fy+fh-22, 24, 22);
-      legs(fx+fw-38, fy+fh-22, 24, 22);
-      dimH(fx, fy-16, fx+fw, 'ANCHO');
-      dimV(fx+fw+16, fy, fy+fh, 'ALTO');
-
-      // Side view
-      const sx=420, sy=160, sw=200, sh=280;
-      panel(sx,sy,sw,sh,'Lateral');
-      shelf(sx+14, sy+120, sw-28);
-      legs(sx+14, sy+sh-22, 24, 22);
-      legs(sx+sw-38, sy+sh-22, 24, 22);
-      dimH(sx, sy-16, sx+sw, 'FONDO');
-
-      // Top view
-      const tx=70, ty=480, tw=300, th=70;
-      panel(tx,ty,tw,th,'Superior');
-      dimH(tx, ty+th+20, tx+tw, 'ANCHO');
-
-      // footer
-      ctx.fillStyle = '#7A756C'; ctx.font='12px Inter, Arial';
-      ctx.fillText('Diagrama generado automáticamente a modo de referencia. Sustituir por planos técnicos oficiales cuando estén disponibles.', 24, H-16);
-
-      const url = canvas.toDataURL('image/jpeg', 0.92);
-      return url;
+    function updateView(){
+      iframe.src = files[idx] + '#page=1&zoom=page-width';
+      indicator.textContent = `Plano ${idx+1} de ${files.length}`;
+      download.href = files[idx];
+      prevBtn.disabled = (idx === 0);
+      nextBtn.disabled = (idx === files.length - 1);
     }
-    function attach(){
-      const img = document.getElementById('planos-img');
-      const dl = document.getElementById('download-planos');
-      const regen = document.getElementById('regen-planos');
-      if (!img || !dl || !regen) return;
-      const url = drawPlanos();
-      img.src = url; dl.href = url;
-      regen.addEventListener('click', (e)=>{ e.preventDefault(); const n = drawPlanos(); img.src = n; dl.href = n; });
+    function go(delta){
+      const next = Math.max(0, Math.min(files.length-1, idx + delta));
+      if (next !== idx) { idx = next; updateView(); }
     }
-    window.addEventListener('load', attach);
+
+    prevBtn.addEventListener('click', ()=> go(-1));
+    nextBtn.addEventListener('click', ()=> go(1));
+    document.addEventListener('keydown', (e)=>{
+      if (!document.body.contains(iframe)) return;
+      if (e.key === 'ArrowLeft') go(-1);
+      if (e.key === 'ArrowRight') go(1);
+    });
+
+    updateView();
   })();
 
   // Process detail card: interactive steps with modal card
