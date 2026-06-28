@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Políticas — NÓRDIC 12</title>
+<link rel="icon" href="images/white-sample.png" type="image/png" />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --sand: #F5F0E8;
+    --ink: #1A1814;
+    --ink-mid: #3D3A35;
+    --ink-light: #7A756C;
+    --oak: #B8956A;
+    --oak-light: #D4B896;
+    --white: #FFFFFF;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Inter', sans-serif; background: var(--white); color: var(--ink); line-height: 1.7; }
+
+  header.topbar { position: sticky; top: 0; z-index: 10; background: rgba(255,255,255,.9); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(0,0,0,.06); }
+  .container { max-width: 980px; margin: 0 auto; padding: 1.2rem 5%; }
+  .brand { font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 600; letter-spacing: .04em; }
+  .brand span { color: var(--oak); }
+  .breadcrumbs { font-size: .85rem; color: var(--ink-light); margin-top: .35rem; }
+
+  .page-title { font-family: 'Playfair Display', serif; font-size: clamp(1.6rem, 3vw, 2.2rem); margin: 1.2rem 0 .8rem; }
+  .section { padding: 1.6rem 5%; }
+  .policy-card { border: 1px solid #eee; border-radius: 12px; padding: 1.2rem 1.4rem; margin: 1rem auto; max-width: 980px; background: var(--sand); }
+  .policy-card h2 { font-size: 1.1rem; margin-bottom: .6rem; }
+  .policy-card h3 { font-size: 1rem; margin: .8rem 0 .4rem; color: var(--ink-mid); }
+  .policy-card p { margin: .5rem 0; color: var(--ink-mid); }
+  .policy-card ul { margin: .4rem 0 .6rem 1.2rem; color: var(--ink-mid); }
+  .policy-card li { margin: .25rem 0; }
+
+  .grid { display: grid; grid-template-columns: 1fr; gap: 1rem; }
+
+  .back-home { display: inline-block; margin: 1rem 5% 2rem; color: var(--white); background: var(--ink); padding: .7rem 1rem; text-decoration: none; border-radius: 6px; }
+  .back-home:hover { background: var(--oak); }
+
+  footer { text-align: center; padding: 2rem 5%; color: var(--ink-light); font-size: .85rem; border-top: 1px solid rgba(0,0,0,.06); margin-top: 1rem; }
+</style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="container">
+      <div class="brand">NÓR<span>DIC</span> 12</div>
+      <div class="breadcrumbs">Inicio / Políticas</div>
+    </div>
+  </header>
+
+  <main class="container">
+    <h1 class="page-title">Políticas de NÓRDIC 12</h1>
+    <p style="color:var(--ink-light); max-width: 860px;">Consulta nuestra garantía, política de devoluciones, términos y condiciones, y política de privacidad. Haz clic en cualquier enlace del pie de página o usa los títulos siguientes.</p>
+  </main>
+
+  <section id="garantia" class="section">
+    <div class="policy-card">
+      <h2>Garantía</h2>
+      <p>En NÓRDIC 12 respaldamos la calidad de nuestros productos. Por ello, ofrecemos una garantía de 12 meses contra defectos de fabricación, como fallas en el mecanizado, ensamblaje o materiales.</p>
+      <h3>La garantía no cubre:</h3>
+      <ul>
+        <li>Daños ocasionados por golpes, caídas o mal uso.</li>
+        <li>Exposición prolongada al agua o ambientes con alta humedad.</li>
+        <li>Modificaciones realizadas por el cliente.</li>
+        <li>Desgaste natural por el uso cotidiano.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="devoluciones" class="section">
+    <div class="policy-card">
+      <h2>Política de devoluciones</h2>
+      <p>Tu satisfacción es nuestra prioridad.</p>
+      <p>Si el producto presenta algún defecto de fabricación o llega dañado durante el transporte, podrás solicitar el cambio o devolución dentro de los 7 días calendario posteriores a la entrega, siempre que el producto conserve su estado original.</p>
+      <h3>No se aceptarán devoluciones por:</h3>
+      <ul>
+        <li>Daños ocasionados después de la entrega.</li>
+        <li>Uso inadecuado del producto.</li>
+        <li>Modificaciones realizadas por el cliente.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="terminos" class="section">
+    <div class="policy-card">
+      <h2>Términos y condiciones</h2>
+      <ul>
+        <li>La información del producto (dimensiones, materiales y colores) es referencial y puede presentar ligeras variaciones propias del proceso de fabricación.</li>
+        <li>Los colores pueden diferir ligeramente según la configuración de cada pantalla.</li>
+        <li>Los tiempos de entrega son estimados y pueden variar por factores logísticos.</li>
+        <li>El cliente debe verificar el estado del producto al momento de la recepción e informar cualquier inconveniente dentro del plazo establecido.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="privacidad" class="section">
+    <div class="policy-card">
+      <h2>Política de privacidad</h2>
+      <p><strong>Respetamos y protegemos la información de nuestros clientes.</strong></p>
+      <p>Los datos personales proporcionados durante el proceso de compra serán utilizados únicamente para:</p>
+      <ul>
+        <li>Procesar pedidos.</li>
+        <li>Coordinar entregas.</li>
+        <li>Brindar atención al cliente.</li>
+        <li>Informar sobre el estado de la compra.</li>
+      </ul>
+      <p>NÓRDIC 12 no comparte, vende ni distribuye la información personal de sus clientes a terceros sin autorización, garantizando la confidencialidad y el tratamiento responsable de sus datos.</p>
+    </div>
+  </section>
+
+  <a class="back-home" href="main.html">Volver a la página principal</a>
+
+  <footer>
+    © 2025 NÓRDIC 12. Todos los derechos reservados.
+  </footer>
+</body>
+</html>

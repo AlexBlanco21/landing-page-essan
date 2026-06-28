@@ -1,0 +1,1869 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NÓRDIC 12 – Mesa de Noche Minimalista</title>
+<link rel="icon" href="images/white-sample.png" type="image/png">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --sand: #F5F0E8;
+    --sand-dark: #EDE6D8;
+    --ink: #1A1814;
+    --ink-mid: #3D3A35;
+    --ink-light: #7A756C;
+    --oak: #B8956A;
+    --oak-light: #D4B896;
+    --oak-pale: #F0E8D8;
+    --white: #FFFFFF;
+    --green: #4A6741;
+    --green-pale: #EBF0E8;
+    --radius-sm: 4px;
+    --radius-md: 10px;
+    --radius-lg: 18px;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--white);
+    color: var(--ink);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.2rem 5%;
+    background: rgba(255,255,255,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(184,149,106,0.15);
+  }
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.25rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    color: var(--ink);
+    text-decoration: none;
+  }
+  .nav-logo span { color: var(--oak); }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a {
+    font-size: 0.82rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--ink-mid);
+    text-decoration: none;
+    transition: color .2s;
+  }
+  .nav-links a:hover { color: var(--oak); }
+  .nav-cta {
+    font-size: 0.82rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    background: var(--ink);
+    color: var(--white);
+    padding: 0.55rem 1.4rem;
+    border-radius: 2px;
+    text-decoration: none;
+    transition: background .2s;
+  }
+  .nav-cta:hover { background: var(--oak); }
+
+  /* ── HERO ── */
+  #hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding-top: 72px;
+    background: var(--sand);
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-left {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding: 3.5rem 4% 7rem 7%;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* Logo lockup */
+  .hero-logo-block {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1.4rem;
+  }
+  .hero-leaf {
+    color: var(--oak);
+    font-size: 1.5rem;
+    margin-bottom: 0.2rem;
+  }
+  .hero-brand-row {
+    display: flex;
+    align-items: baseline;
+    gap: 0;
+    line-height: 1;
+  }
+  .hero-brand-nordic {
+    font-family: 'Inter', sans-serif;
+    font-weight: 800;
+    font-size: clamp(3rem, 6vw, 5.4rem);
+    letter-spacing: -0.02em;
+    color: var(--ink);
+    line-height: 1;
+  }
+  .hero-brand-12 {
+    font-family: 'Playfair Display', serif;
+    font-weight: 500;
+    font-size: clamp(3rem, 6vw, 5.4rem);
+    color: var(--oak);
+    line-height: 1;
+    font-style: italic;
+    margin-left: 0.1em;
+  }
+  .hero-subtitle-line {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    margin-top: 0.35rem;
+    color: var(--ink-light);
+    font-size: 0.9rem;
+    letter-spacing: 0.12em;
+  }
+  .hero-subtitle-line span { flex-shrink: 0; }
+  .hero-subtitle-line .dash {
+    flex: 1;
+    height: 1px;
+    background: var(--ink-light);
+    max-width: 40px;
+  }
+
+  /* Headline */
+  .hero-headline {
+    font-family: 'Inter', sans-serif;
+    font-weight: 800;
+    font-size: clamp(1.4rem, 2.4vw, 2rem);
+    line-height: 1.2;
+    color: var(--oak);
+    text-transform: uppercase;
+    letter-spacing: 0.01em;
+    margin-bottom: 0.8rem;
+  }
+  .hero-desc {
+    font-size: 0.95rem;
+    color: var(--ink-mid);
+    line-height: 1.65;
+    max-width: 380px;
+    margin-bottom: 1.8rem;
+  }
+
+  /* Feature badges */
+  .hero-badges {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-bottom: 2rem;
+  }
+  .hero-badge {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    min-width: 70px;
+  }
+  .hero-badge-icon {
+    width: 52px; height: 52px;
+    border: 1.5px solid var(--ink);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    background: transparent;
+  }
+  .hero-badge-icon svg { width: 22px; height: 22px; }
+  .hero-badge-label {
+    font-size: 0.62rem;
+    font-weight: 700;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    color: var(--ink);
+    text-align: center;
+    line-height: 1.3;
+  }
+
+  /* CTA buttons */
+  .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .btn-primary {
+    background: var(--ink);
+    color: var(--white);
+    padding: 0.9rem 2.2rem;
+    font-size: 0.85rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border-radius: 2px;
+    transition: background .2s;
+    display: inline-block;
+  }
+  .btn-primary:hover { background: var(--oak); }
+  .btn-secondary {
+    background: transparent;
+    color: var(--ink);
+    padding: 0.9rem 2.2rem;
+    font-size: 0.85rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border: 1px solid var(--ink);
+    border-radius: 2px;
+    transition: border-color .2s, color .2s;
+    display: inline-block;
+  }
+  .btn-secondary:hover { border-color: var(--oak); color: var(--oak); }
+
+  /* Right image column */
+  .hero-right {
+    background: #E8DDD0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-product-img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain; /* show full image without cropping */
+    object-position: center; /* keep centered within area */
+    display: block;
+  }
+  .hero-img-placeholder {
+    width: 100%;
+    height: 100%;
+    min-height: 480px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    background: #DDD0C0;
+  }
+  .hero-img-placeholder svg { opacity: 0.35; }
+  .hero-img-placeholder p {
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-mid);
+    opacity: 0.6;
+  }
+
+  /* Bottom dark bar spanning full width */
+  .hero-bottom-bar {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    background: #2A2520;
+    display: flex;
+    align-items: center;
+    padding: 0.95rem 7%;
+    gap: 2.5rem;
+    z-index: 10;
+  }
+  .hbb-item {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    flex: 1;
+  }
+  .hbb-item + .hbb-item {
+    border-left: 1px solid rgba(255,255,255,0.12);
+    padding-left: 2.5rem;
+  }
+  .hbb-icon {
+    width: 32px; height: 32px;
+    flex-shrink: 0;
+    color: var(--oak-light);
+  }
+  .hbb-title {
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: var(--white);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    margin-bottom: 0.15rem;
+  }
+  .hbb-desc {
+    font-size: 0.7rem;
+    color: rgba(255,255,255,0.45);
+    line-height: 1.4;
+  }
+
+  /* ── SECTIONS COMMON ── */
+  section { padding: 6rem 8%; }
+  .section-eyebrow {
+    font-size: 0.72rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--oak);
+    margin-bottom: 0.8rem;
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.8rem, 3vw, 2.8rem);
+    font-weight: 500;
+    line-height: 1.2;
+    color: var(--ink);
+    margin-bottom: 1.2rem;
+  }
+  .section-body {
+    font-size: 1rem;
+    color: var(--ink-mid);
+    line-height: 1.8;
+    max-width: 660px;
+  }
+  .divider { width: 48px; height: 2px; background: var(--oak); margin: 1.6rem 0; }
+
+  /* ── GALLERY ── */
+  #galeria { background: var(--sand); padding: 5rem 5%; }
+  .gallery-header { text-align: center; max-width: 540px; margin: 0 auto 3.5rem; }
+  .gallery-grid {
+    /* Columns-based masonry for reliable proportional layout without JS */
+    column-count: 3;
+    column-gap: 1rem;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+  .gallery-card {
+    background: var(--oak-pale);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    display: block; /* block-level in columns for stability */
+    padding: 0.6rem;
+    cursor: pointer;
+    transition: transform .2s;
+    width: 100%;
+    break-inside: avoid; /* keep card intact across columns */
+    -webkit-column-break-inside: avoid;
+    margin: 0 0 1rem; /* spacing between items vertically */
+  }
+  .gallery-card:hover { transform: scale(1.02); }
+  .gallery-card svg { opacity: 0.35; }
+  .gallery-card .gallery-img {
+    width: 100%;
+    height: auto; /* legacy; overridden by frame rule */
+    border-radius: 8px;
+    display: block;
+  }
+  /* Equal-height gallery frames to keep items symmetrical */
+  .gallery-frame { height: 340px; background: #202B38; border-radius: 8px; display:flex; align-items:center; justify-content:center; }
+  .gallery-frame img { max-width: 100%; max-height: 100%; object-fit: contain; background: transparent; border-radius: 8px; }
+  .gallery-label {
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-light);
+    padding: 0 0.25rem 0.25rem;
+  }
+  .gallery-note {
+    text-align: center;
+    margin-top: 2rem;
+    font-size: 0.85rem;
+    color: var(--ink-light);
+    font-style: italic;
+  }
+
+  /* ── DESCRIPCIÓN ── */
+  #descripcion { background: var(--white); }
+  .desc-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start; }
+  .desc-callout {
+    background: var(--sand);
+    border-left: 3px solid var(--oak);
+    padding: 1.6rem 1.8rem;
+    border-radius: 0 var(--radius-md) var(--radius-md) 0;
+    margin-top: 2rem;
+  }
+  .desc-callout p {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    font-style: italic;
+    color: var(--ink-mid);
+    line-height: 1.7;
+  }
+  .desc-right { padding-top: 0.5rem; }
+  .quality-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; margin-top: 2rem; }
+  .quality-item {
+    background: var(--sand);
+    padding: 1.4rem;
+    border-radius: var(--radius-md);
+  }
+  .quality-item .qi-icon {
+    width: 36px; height: 36px;
+    background: var(--oak-pale);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 0.8rem;
+    color: var(--oak);
+    font-size: 1.1rem;
+  }
+  .quality-item h4 {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--ink);
+    margin-bottom: 0.3rem;
+  }
+  .quality-item p { font-size: 0.82rem; color: var(--ink-light); line-height: 1.5; }
+
+  /* ── ESPECIFICACIONES ── */
+  #especificaciones { background: var(--ink); color: var(--white); }
+  #especificaciones .section-title { color: var(--white); }
+  #especificaciones .section-eyebrow { color: var(--oak-light); }
+  .specs-layout { display: grid; grid-template-columns: 1fr 1.2fr; gap: 5rem; align-items: start; }
+  .specs-table { width: 100%; margin-top: 1.5rem; border-collapse: separate; border-spacing: 0; }
+  .specs-table tr { border-bottom: 1px solid rgba(255,255,255,0.08); transition: background .2s; }
+  .specs-table tr:first-child { border-top: 1px solid rgba(255,255,255,0.08); }
+  .specs-table tr:hover { background: rgba(255,255,255,0.04); }
+  .specs-table td { padding: 0.9rem 0.2rem; }
+  .specs-table td:first-child {
+    font-size: 0.78rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.55);
+    width: 46%;
+  }
+  .specs-table td:last-child {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--white);
+  }
+  .specs-meter {
+    position: relative; height: 8px; background: rgba(255,255,255,0.08); border-radius: 20px; overflow: hidden; margin-top: 6px;
+  }
+  .specs-meter .fill { position: absolute; left: 0; top: 0; bottom: 0; width: 0; background: linear-gradient(90deg, var(--oak-light), var(--oak)); }
+  .specs-note-btn { margin-top: 1.2rem; display: inline-flex; align-items: center; gap: 0.5rem; background: rgba(255,255,255,0.08); color: var(--white); border: 1px solid rgba(255,255,255,0.14); padding: 0.6rem 0.9rem; border-radius: 8px; cursor: pointer; transition: background .2s, border-color .2s; }
+  .specs-note-btn:hover { background: rgba(255,255,255,0.12); border-color: rgba(255,255,255,0.22); }
+  .specs-note-btn svg { color: var(--oak-light); }
+  .specs-note { display:none; }
+  .specs-visual {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: var(--radius-lg);
+    padding: 3rem 2rem;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+  }
+  .specs-visual p {
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.3);
+  }
+  .planos-img { width: 100%; max-width: 520px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.12); box-shadow: 0 8px 24px rgba(0,0,0,0.25); background: rgba(255,255,255,0.02); }
+  .planos-actions { display: flex; gap: .6rem; flex-wrap: wrap; justify-content: center; }
+  .btn-ghost { background: transparent; color: var(--white); border: 1px solid rgba(255,255,255,0.14); padding: 0.55rem .9rem; border-radius: 8px; text-decoration: none; font-size: .85rem; }
+  .btn-ghost:hover { border-color: var(--oak-light); color: var(--oak-light); }
+
+  /* Modal for Technical Note */
+  .modal-backdrop { position: fixed; inset: 0; background: rgba(0,0,0,0.55); display: none; align-items: center; justify-content: center; z-index: 1000; }
+  .modal-backdrop.open { display: flex; }
+  .modal { width: min(620px, 92vw); background: var(--sand); color: var(--ink); border-radius: 14px; box-shadow: 0 20px 70px rgba(0,0,0,0.45); overflow: hidden; }
+  .modal-header { display:flex; align-items:center; justify-content: space-between; padding: 1rem 1.2rem; background: var(--oak-pale); border-bottom: 1px solid var(--oak-light); }
+  .modal-title { font-family: 'Playfair Display', serif; font-size: 1.15rem; color: var(--ink); }
+  .modal-body { padding: 1.2rem; color: var(--ink-mid); line-height: 1.7; }
+  .modal-actions { display: flex; justify-content: flex-end; padding: 0 1.2rem 1.2rem; }
+  .close-btn { background: var(--ink); color: var(--white); border: none; padding: .6rem .9rem; border-radius: 6px; cursor: pointer; }
+
+  /* ── FABRICACIÓN ── */
+  #fabricacion { background: var(--sand); }
+  .process-summary-table { width: 100%; border-collapse: collapse; margin-top: .8rem; }
+  .process-summary-table th, .process-summary-table td { padding: .6rem .8rem; border: 1px solid var(--sand-dark); font-size: .9rem; }
+  .process-summary-table th { background: var(--oak-pale); color: var(--ink); text-align: left; font-weight: 600; }
+  .process-steps {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.2rem;
+    margin-top: 1.8rem;
+    position: relative;
+  }
+  .process-step { text-align: center; padding: 1rem; position: relative; z-index: 1; background: var(--white); border: 1px solid var(--sand-dark); border-radius: var(--radius-md); cursor: pointer; transition: transform .15s, border-color .2s; }
+  .process-step:hover { transform: translateY(-2px); border-color: var(--oak); }
+  .step-icon { width: 52px; height: 52px; border-radius: 50%; background: var(--oak-pale); display:flex; align-items:center; justify-content:center; margin: 0 auto .6rem; color: var(--oak); }
+  .step-label { font-size: 0.85rem; font-weight: 700; color: var(--ink); }
+  .step-desc { font-size: 0.78rem; color: var(--ink-light); line-height: 1.5; margin-top: .3rem; }
+  .step-num-badge { position: absolute; top: 8px; left: 8px; background: var(--oak); color: var(--white); font-size: .7rem; padding: .2rem .45rem; border-radius: .5rem; }
+  /* Detail card */
+  .process-detail-card { display:none; position: fixed; inset: 0; background: rgba(0,0,0,.45); align-items: center; justify-content: center; z-index: 1000; }
+  .process-detail-card.open { display:flex; }
+  .pdc-body { width: min(720px,92vw); background: var(--white); border-radius: 14px; box-shadow: 0 20px 70px rgba(0,0,0,.5); overflow:hidden; border:1px solid var(--sand-dark); }
+  .pdc-header { display:flex; gap:.8rem; align-items:center; justify-content: space-between; padding: 1rem 1.2rem; background: var(--oak-pale); border-bottom: 1px solid var(--oak-light); }
+  .pdc-title { display:flex; align-items:center; gap:.8rem; font-weight:700; color: var(--ink); }
+  .pdc-content { padding: 1.2rem; color: var(--ink-mid); }
+  .pdc-actions { display:flex; justify-content:flex-end; padding: 0 1.2rem 1.2rem; }
+  .pdc-close { background: var(--ink); color: var(--white); border:none; padding: .6rem .9rem; border-radius: 8px; cursor:pointer; }
+
+  /* ── POR QUÉ ELEGIRNOS ── */
+  #por-que { background: var(--white); }
+  .why-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.2rem; margin-top: 2.5rem; }
+  .why-card {
+    border: 1px solid var(--sand-dark);
+    border-radius: var(--radius-md);
+    padding: 1.8rem 1.5rem;
+    transition: border-color .2s, transform .2s;
+  }
+  .why-card:hover { border-color: var(--oak); transform: translateY(-3px); }
+  .why-icon {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+  }
+  .why-card h3 {
+    font-size: 0.92rem;
+    font-weight: 600;
+    color: var(--ink);
+    margin-bottom: 0.5rem;
+  }
+  .why-card p { font-size: 0.82rem; color: var(--ink-light); line-height: 1.6; }
+
+  /* ── MODELO 3D ── */
+  #modelo-3d { background: var(--sand); }
+  .model-viewport {
+    margin-top: 2.5rem;
+    background: var(--oak-pale);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--oak-light);
+    min-height: 420px;
+    position: relative;
+    overflow: hidden;
+  }
+  .model-viewport canvas { display: block; width: 100%; height: 100%; position: relative; z-index: 1; }
+  .model-loading {
+    position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
+    color: var(--ink-mid); font-size: 0.9rem; background: rgba(255,255,255,0.3);
+  }
+
+  /* ── PERSONALIZACIÓN ── */
+  #personalizacion { background: var(--white); }
+  .custom-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; margin-top: 2.5rem; }
+  .custom-group h3 {
+    font-size: 0.78rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-light);
+    margin-bottom: 1rem;
+  }
+  /* Arrange swatches to the left of preview and center config below */
+  .custom-colors {
+    display: grid;
+    grid-template-columns: minmax(140px, 240px) 1fr;
+    grid-template-areas:
+      "title title"
+      "swatches preview";
+    gap: 1.2rem 1.6rem;
+    align-items: start;
+  }
+  .custom-colors h3 { grid-area: title; }
+  .custom-colors .swatch-wrap { grid-area: swatches; }
+  .custom-colors .product-preview { grid-area: preview; margin-bottom: 0; }
+  .custom-config { grid-column: 1 / -1; }
+  .custom-config h3 { text-align: center; }
+  .config-chips { align-items: center; }
+  .color-swatches { display: flex; gap: 0.6rem; flex-wrap: wrap; }
+  .swatch {
+    width: 44px; height: 44px;
+    border-radius: 50%;
+    border: 2px solid transparent;
+    cursor: pointer;
+    transition: transform .15s, border-color .15s;
+    position: relative;
+  }
+  .swatch:hover { transform: scale(1.1); border-color: var(--oak); }
+  .swatch[aria-selected="true"] { outline: 3px solid var(--oak); outline-offset: 3px; }
+  .swatch .swatch-label {
+    position: absolute; bottom: -1.4rem; left: 50%; transform: translateX(-50%);
+    font-size: 0.65rem; white-space: nowrap; color: var(--ink-light);
+  }
+  .swatch-wrap { display: flex; gap: 1.2rem; flex-wrap: wrap; }
+  .config-chips { display: flex; flex-direction: column; gap: 0.6rem; }
+  .chip { display: flex; align-items: center; gap: 0.6rem; padding: 0.8rem 1.0rem; border: 1px solid var(--sand-dark); border-radius: var(--radius-md); transition: border-color .2s, background .2s; color: var(--ink-mid); font-size: 0.9rem; }
+  .chip:hover { border-color: var(--oak); background: var(--oak-pale); }
+  .chip input[type="checkbox"] { width: 18px; height: 18px; accent-color: var(--oak); }
+
+  .product-preview { background: var(--sand); border: 1px solid var(--sand-dark); border-radius: var(--radius-md); padding: 0.8rem; margin-bottom: 1.2rem; display: grid; gap: 0.4rem; }
+  .product-preview img { width: 100%; height: auto; display: block; border-radius: 8px; background: #202B38; }
+  .preview-note { font-size: 0.72rem; color: var(--ink-light); text-align: center; }
+  /* Horizontal grid for configuration chips */
+  .config-chips {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 0.6rem;
+    align-items: start;
+  }
+  /* WhatsApp CTA shares primary button styling */
+  .btn-whatsapp { display:inline-flex; align-items:center; gap:.5rem; }
+
+  /* Viewer control buttons */
+  .viewer-controls {
+    position: absolute;
+    right: .8rem;
+    bottom: .8rem;
+    display: flex;
+    gap: .4rem;
+    z-index: 10;
+    pointer-events: auto;
+  }
+  .vc-btn {
+    width: 38px; height: 38px;
+    border-radius: 50%;
+    background: rgba(0,0,0,0.75);
+    color: #fff;
+    border: 1px solid rgba(255,255,255,0.2);
+    display: inline-flex; align-items: center; justify-content: center;
+    font-weight: 700;
+    cursor: pointer;
+    transition: transform .15s, background .2s;
+    user-select: none;
+  }
+  .vc-btn:hover { transform: translateY(-1px); background: rgba(0,0,0,0.9); }
+  .vc-btn:active { transform: translateY(0); }
+
+  /* ── VIDEO ── */
+  #video { background: var(--ink); }
+  #video .section-eyebrow { color: var(--oak-light); }
+  #video .section-title { color: var(--white); }
+  #video .section-body { color: rgba(255,255,255,0.6); }
+  .video-frame {
+    margin-top: 2.5rem;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: var(--radius-lg);
+    max-width: 860px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1.2rem;
+    cursor: pointer;
+    transition: border-color .2s;
+  }
+  .video-frame:hover { border-color: var(--oak); }
+  .play-btn {
+    width: 70px; height: 70px;
+    background: var(--oak);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .play-btn svg { margin-left: 4px; }
+  .video-note { font-size: 0.8rem; color: rgba(255,255,255,0.35); letter-spacing: 0.08em; text-transform: uppercase; }
+  /* Make vertical videos fully visible without cropping */
+  .video-frame { aspect-ratio: auto; }
+  .video-frame video { width: 100%; height: auto; max-height: 80vh; object-fit: contain; border-radius: var(--radius-lg); display: block; background: rgba(255,255,255,0.06); }
+
+  /* ── MDF BENEFICIOS ── */
+  #mdf { background: var(--sand); }
+  .mdf-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; margin-top: 2rem; }
+  .mdf-list { list-style: none; display: flex; flex-direction: column; gap: 1rem; margin-top: 1.5rem; }
+  .mdf-list li {
+    display: flex; align-items: flex-start; gap: 1rem;
+    font-size: 0.95rem; color: var(--ink-mid);
+  }
+  .mdf-list li::before {
+    content: '✔';
+    color: var(--oak);
+    font-size: 0.85rem;
+    margin-top: 2px;
+    flex-shrink: 0;
+  }
+  .mdf-visual {
+    background: var(--white);
+    border-radius: var(--radius-lg);
+    padding: 2.5rem;
+    text-align: center;
+  }
+  .mdf-stat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 1.5rem; }
+  .mdf-stat {
+    background: var(--sand);
+    border-radius: var(--radius-md);
+    padding: 1.4rem;
+    text-align: center;
+  }
+  .mdf-stat .big {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    font-weight: 500;
+    color: var(--oak);
+  }
+  .mdf-stat .sm { font-size: 0.75rem; color: var(--ink-light); text-transform: uppercase; letter-spacing: 0.08em; margin-top: 4px; }
+
+  /* ── SOSTENIBILIDAD ── */
+  #sostenibilidad { background: var(--green-pale); }
+  #sostenibilidad .section-eyebrow { color: var(--green); }
+  .sust-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; margin-top: 2rem; }
+  .sust-card {
+    background: var(--white);
+    border-radius: var(--radius-md);
+    padding: 1.8rem;
+    display: flex;
+    gap: 1.2rem;
+    align-items: flex-start;
+  }
+  .sust-icon {
+    font-size: 1.5rem;
+    flex-shrink: 0;
+    width: 44px; height: 44px;
+    background: var(--green-pale);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .sust-card h4 { font-size: 0.9rem; font-weight: 600; color: var(--ink); margin-bottom: 0.4rem; }
+  .sust-card p { font-size: 0.82rem; color: var(--ink-light); line-height: 1.6; }
+  .sust-tagline {
+    grid-column: 1 / -1;
+    background: var(--green);
+    color: var(--white);
+    padding: 2rem 2.5rem;
+    border-radius: var(--radius-md);
+    text-align: center;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+    font-style: italic;
+    line-height: 1.6;
+  }
+
+  /* ── OPINIONES ── */
+  #opiniones { background: var(--white); }
+  .reviews-header { max-width: 480px; }
+  .reviews-badge {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    background: var(--sand);
+    padding: 0.4rem 1rem;
+    border-radius: 2rem;
+    font-size: 0.78rem;
+    color: var(--ink-mid);
+    margin-bottom: 1.2rem;
+  }
+  .stars { color: var(--oak); letter-spacing: 1px; }
+  .reviews-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.2rem; margin-top: 2.5rem; }
+  .review-card {
+    background: var(--sand);
+    border-radius: var(--radius-md);
+    padding: 1.8rem;
+  }
+  .review-stars { color: var(--oak); font-size: 0.9rem; margin-bottom: 0.9rem; }
+  .review-text {
+    font-size: 0.92rem;
+    color: var(--ink-mid);
+    line-height: 1.7;
+    font-style: italic;
+    margin-bottom: 1.2rem;
+  }
+  .reviewer {
+    display: flex; align-items: center; gap: 0.8rem;
+  }
+  .reviewer-avatar {
+    width: 36px; height: 36px;
+    border-radius: 50%;
+    background: var(--oak-light);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--ink);
+  }
+  .reviewer-name { font-size: 0.82rem; font-weight: 600; color: var(--ink); }
+  .reviewer-loc { font-size: 0.72rem; color: var(--ink-light); }
+  .disclaimer { margin-top: 1.5rem; font-size: 0.72rem; color: var(--ink-light); font-style: italic; text-align: center; }
+
+  /* ── FAQ ── */
+  #faq { background: var(--sand); }
+  .faq-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 2.5rem; }
+  .faq-item {
+    background: var(--white);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+  }
+  .faq-q {
+    padding: 1.2rem 1.4rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--ink);
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: none;
+    background: none;
+    width: 100%;
+    text-align: left;
+    transition: color .2s;
+  }
+  .faq-q:hover { color: var(--oak); }
+  .faq-q .arrow { transition: transform .25s; font-size: 0.7rem; color: var(--oak); }
+  .faq-q.open .arrow { transform: rotate(180deg); }
+  .faq-a {
+    max-height: 0; overflow: hidden;
+    font-size: 0.85rem;
+    color: var(--ink-mid);
+    line-height: 1.7;
+    transition: max-height .3s ease, padding .3s;
+  }
+  .faq-a.open {
+    max-height: 200px;
+    padding: 0 1.4rem 1.2rem;
+  }
+
+  /* ── CONTACTO ── */
+  #contacto { background: var(--ink); color: var(--white); text-align: center; }
+  #contacto .section-eyebrow { color: var(--oak-light); }
+  #contacto .section-title { color: var(--white); max-width: 560px; margin-left: auto; margin-right: auto; }
+  #contacto .section-body { color: rgba(255,255,255,0.55); margin: 0 auto 3rem; }
+  .contact-channels { display: flex; justify-content: center; gap: 1.2rem; flex-wrap: wrap; }
+  .channel-btn {
+    display: inline-flex; align-items: center; gap: 0.7rem;
+    padding: 0.9rem 1.8rem;
+    border-radius: var(--radius-md);
+    font-size: 0.88rem;
+    font-weight: 500;
+    text-decoration: none;
+    transition: transform .2s, opacity .2s;
+  }
+  .channel-btn:hover { transform: translateY(-2px); opacity: 0.88; }
+  .ch-whatsapp { background: #25D366; color: var(--white); }
+  .ch-mail { background: rgba(255,255,255,0.1); color: var(--white); border: 1px solid rgba(255,255,255,0.15); }
+  .ch-ig { background: linear-gradient(135deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888); color: var(--white); }
+  .ch-fb { background: #1877F2; color: var(--white); }
+
+  /* ── FOOTER ── */
+  footer {
+    background: #0F0E0C;
+    color: rgba(255,255,255,0.4);
+    padding: 3rem 8%;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 2rem;
+    align-items: center;
+  }
+  .footer-brand {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    color: rgba(255,255,255,0.7);
+    margin-bottom: 0.5rem;
+  }
+  .footer-brand span { color: var(--oak); }
+  .footer-tagline { font-size: 0.78rem; }
+  .footer-links { display: flex; gap: 1.8rem; flex-wrap: wrap; justify-content: flex-end; }
+  .footer-links a {
+    font-size: 0.75rem;
+    color: rgba(255,255,255,0.35);
+    text-decoration: none;
+    transition: color .2s;
+  }
+  .footer-links a:hover { color: var(--oak-light); }
+  .footer-copy {
+    grid-column: 1 / -1;
+    border-top: 1px solid rgba(255,255,255,0.06);
+    padding-top: 1.5rem;
+    font-size: 0.72rem;
+    text-align: center;
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    /* Stack color preview and swatches on small screens */
+    .custom-colors {
+      grid-template-columns: 1fr;
+      grid-template-areas:
+        "title"
+        "preview"
+        "swatches";
+    }
+    #hero { grid-template-columns: 1fr; }
+    .hero-left { padding: 2.5rem 6% 5rem; }
+    .hero-right { min-height: 340px; }
+    .hero-bottom-bar { flex-direction: column; gap: 1rem; padding: 1.2rem 6%; }
+    .hbb-item + .hbb-item { border-left: none; border-top: 1px solid rgba(255,255,255,0.12); padding-left: 0; padding-top: 1rem; }
+    .desc-grid, .specs-layout, .mdf-grid, .sust-grid, .custom-layout { grid-template-columns: 1fr; gap: 2rem; }
+    .gallery-grid { column-count: 2; }
+    .gallery-frame { height: 240px; }
+    .gallery-card.tall { grid-row: span 1; }
+    .process-steps { grid-template-columns: 1fr 1fr; gap: 2rem; }
+    .process-steps::before { display: none; }
+    .why-grid, .reviews-grid, .faq-layout { grid-template-columns: 1fr; }
+    nav { padding: 1rem 4%; }
+    .nav-links { display: none; }
+    section { padding: 4rem 5%; }
+    footer { grid-template-columns: 1fr; }
+    .footer-links { justify-content: flex-start; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#hero" class="nav-logo">NÓR<span>DIC</span> 12</a>
+  <ul class="nav-links">
+    <li><a href="#galeria">Galería</a></li>
+    <li><a href="#descripcion">Producto</a></li>
+    <li><a href="#especificaciones">Specs</a></li>
+    <li><a href="#personalizacion">Opciones</a></li>
+    <li><a href="#faq">FAQ</a></li>
+  </ul>
+  <a href="https://wa.me/51962311831?text=Buenos%20d%C3%ADas%2C%20quisiera%20tener%20mayor%20informaci%C3%B3n%20sobre%20Nordic%2012%20y%20sus%20precios" class="nav-cta">Solicitar cotización</a>
+</nav>
+
+<!-- 1. HERO -->
+<section id="hero">
+  <div class="hero-left">
+
+    <!-- Logo block -->
+    <div class="hero-logo-block">
+      <div class="hero-leaf">
+        <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M14 3C14 3 6 8 6 16C6 20.4 9.6 24 14 24C18.4 24 22 20.4 22 16C22 8 14 3 14 3Z" stroke="#B8956A" stroke-width="1.6" fill="none"/>
+          <path d="M14 24V14" stroke="#B8956A" stroke-width="1.4"/>
+          <path d="M14 18L10 14" stroke="#B8956A" stroke-width="1.2"/>
+          <path d="M14 16L18 12" stroke="#B8956A" stroke-width="1.2"/>
+        </svg>
+      </div>
+      <div class="hero-brand-row">
+        <span class="hero-brand-nordic">NORDIC</span>
+        <span class="hero-brand-12">12</span>
+      </div>
+      <div class="hero-subtitle-line">
+        <span class="dash"></span>
+        <span>Mesa de Noche</span>
+        <span class="dash"></span>
+      </div>
+    </div>
+
+    <!-- Headline + description -->
+    <h1 class="hero-headline">Diseño minimalista.<br>Ingeniería inteligente.</h1>
+    <p class="hero-desc">Más que una mesa de noche,<br>una pieza creada para transformar tu espacio.</p>
+
+    <!-- Feature badges -->
+    <div class="hero-badges">
+      <div class="hero-badge">
+        <div class="hero-badge-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 22c-4.4 0-8-3.6-8-8 0-4.4 8-12 8-12s8 7.6 8 12c0 4.4-3.6 8-8 8z"/>
+          </svg>
+        </div>
+        <div class="hero-badge-label">Diseño<br>moderno</div>
+      </div>
+      <div class="hero-badge">
+        <div class="hero-badge-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="3" width="8" height="8" rx="1"/>
+            <rect x="13" y="3" width="8" height="8" rx="1"/>
+            <rect x="3" y="13" width="8" height="8" rx="1"/>
+            <rect x="13" y="13" width="8" height="8" rx="1"/>
+          </svg>
+        </div>
+        <div class="hero-badge-label">Ensamble<br>a presión</div>
+      </div>
+      <div class="hero-badge">
+        <div class="hero-badge-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 2L12 8M12 8L9 5M12 8L15 5"/>
+            <rect x="5" y="10" width="14" height="10" rx="1"/>
+            <path d="M8 14h8M8 17h5"/>
+          </svg>
+        </div>
+        <div class="hero-badge-label">Fabricación<br>CNC</div>
+      </div>
+      <div class="hero-badge">
+        <div class="hero-badge-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 2L3 7v5c0 5.25 3.75 10.15 9 11.35C17.25 22.15 21 17.25 21 12V7L12 2z"/>
+          </svg>
+        </div>
+        <div class="hero-badge-label">Resistente<br>y duradera</div>
+      </div>
+    </div>
+
+    <!-- CTAs -->
+    <div class="hero-actions">
+      <a href="https://wa.me/51962311831?text=Buenos%20d%C3%ADas%2C%20quisiera%20tener%20mayor%20informaci%C3%B3n%20sobre%20Nordic%2012%20y%20sus%20precios" class="btn-primary">Comprar ahora</a>
+      <a href="#descripcion" class="btn-secondary">Más información</a>
+    </div>
+
+  </div>
+
+  <!-- Right: product image -->
+  <div class="hero-right">
+    <!-- Default preview uses white variant -->
+    <img src="images/white-sample.png" alt="Mesa de noche NÓRDIC 12" class="hero-product-img" id="hero-img-slot" />
+  </div>
+
+  <!-- Full-width bottom bar -->
+  <div class="hero-bottom-bar">
+    <div class="hbb-item">
+      <svg class="hbb-icon" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M16 4C16 4 7 10 7 18.5C7 23.1 11.1 27 16 27C20.9 27 25 23.1 25 18.5C25 10 16 4 16 4Z" stroke="#D4B896" stroke-width="1.6" fill="none"/>
+        <path d="M16 27V17" stroke="#D4B896" stroke-width="1.4"/>
+        <path d="M16 21L12 17" stroke="#D4B896" stroke-width="1.2"/>
+        <path d="M16 19L20 15" stroke="#D4B896" stroke-width="1.2"/>
+      </svg>
+      <div>
+        <div class="hbb-title">MDF 12 mm</div>
+        <div class="hbb-desc">Alta precisión, excelente acabado<br>y compromiso con la sostenibilidad.</div>
+      </div>
+    </div>
+    <div class="hbb-item">
+      <svg class="hbb-icon" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M16 6L26 16L16 26L6 16L16 6Z" stroke="#D4B896" stroke-width="1.5" fill="none"/>
+        <circle cx="16" cy="16" r="4" stroke="#D4B896" stroke-width="1.2" fill="none"/>
+      </svg>
+      <div>
+        <div class="hbb-title">Hecha con pasión,</div>
+        <div class="hbb-desc">pensada para durar.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 2. GALERÍA -->
+<section id="galeria">
+  <div class="gallery-header">
+    <p class="section-eyebrow">Galería del producto</p>
+    <h2 class="section-title">Cada ángulo cuenta</h2>
+    
+  </div>
+  <div class="gallery-grid">
+    <div class="gallery-card">
+      <div class="gallery-frame"><img src="images/frontal.jpeg" alt="Vista frontal" class="gallery-img" /></div>
+      <span class="gallery-label">Vista frontal</span>
+    </div>
+    <div class="gallery-card">
+      <div class="gallery-frame"><img src="images/lateral.jpeg" alt="Vista lateral" class="gallery-img" /></div>
+      <span class="gallery-label">Vista lateral</span>
+    </div>
+    <div class="gallery-card">
+      <div class="gallery-frame"><img src="images/superior.jpeg" alt="Vista superior" class="gallery-img" /></div>
+      <span class="gallery-label">Vista superior</span>
+    </div>
+    <div class="gallery-card">
+      <div class="gallery-frame"><img src="images/trasera.jpeg" alt="Vista trasera" class="gallery-img" /></div>
+      <span class="gallery-label">Vista trasera</span>
+    </div>
+    <div class="gallery-card">
+      <div class="gallery-frame"><img src="images/desplegado.jpeg" alt="Vista desplegado" class="gallery-img" /></div>
+      <span class="gallery-label">Vista desplegado</span>
+    </div>
+  </div>
+  
+</section>
+
+<!-- 3. DESCRIPCIÓN -->
+<section id="descripcion">
+  <div class="desc-grid">
+    <div class="desc-left">
+      <p class="section-eyebrow">Descripción del producto</p>
+      <h2 class="section-title">NÓRDIC 12</h2>
+      <div class="divider"></div>
+      <p class="section-body">Descubre NÓRDIC 12, una mesa de noche diseñada para quienes buscan combinar funcionalidad, diseño y calidad en un solo producto. Fabricada con MDF de 12 mm mediante tecnología de fresado CNC de alta precisión, ofrece un acabado limpio, una estructura resistente y un estilo minimalista que se adapta fácilmente a dormitorios modernos, nórdicos o contemporáneos.</p>
+      <div class="desc-callout">
+        <p>"Su innovador sistema de ensamblaje a presión elimina la necesidad de tornillos visibles, brindando una apariencia elegante y un armado sencillo."</p>
+      </div>
+      <p class="section-body" style="margin-top:1.5rem;">Además, cuenta con un compartimiento superior y una repisa inferior que permiten organizar libros, dispositivos electrónicos, accesorios o elementos decorativos, manteniendo tu espacio ordenado y funcional.</p>
+    </div>
+    <div class="desc-right">
+      <p class="section-eyebrow">Calidad que se nota</p>
+      <p class="section-body" style="margin-bottom:0;">En NÓRDIC 12, cada pieza ha sido diseñada digitalmente y mecanizada con precisión para garantizar un ajuste perfecto y una estructura estable.</p>
+      <div class="quality-grid">
+        <div class="quality-item">
+          <div class="qi-icon">⚙️</div>
+          <h4>Fresado CNC</h4>
+          <p>Tolerancias de 0.1 mm para un ensamble perfecto sin holguras.</p>
+        </div>
+        <div class="quality-item">
+          <div class="qi-icon">🔩</div>
+          <h4>Sin tornillos</h4>
+          <p>Ensamblaje a presión que garantiza una apariencia limpia y elegante.</p>
+        </div>
+        <div class="quality-item">
+          <div class="qi-icon">📦</div>
+          <h4>Fácil armado</h4>
+          <p>Piezas numeradas y guía de armado incluida para instalación rápida.</p>
+        </div>
+        <div class="quality-item">
+          <div class="qi-icon">✨</div>
+          <h4>Acabado liso</h4>
+          <p>Superficie uniforme lista para lacado, melamina o cualquier acabado decorativo.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 4. ESPECIFICACIONES -->
+<section id="especificaciones">
+  <div class="specs-layout">
+    <div>
+      <p class="section-eyebrow">Ficha técnica</p>
+      <h2 class="section-title">Especificaciones</h2>
+      <div class="divider" style="background:var(--oak-light);"></div>
+      <table class="specs-table" id="specs-table">
+        <tr><td>Material</td><td>MDF de 12 mm</td></tr>
+        <tr><td>Proceso de fabricación</td><td>Fresado CNC</td></tr>
+        <tr><td>Acabado</td><td>Lijado fino (listo para pintar o lacar)</td></tr>
+        <tr><td>Tipo de unión</td><td>Ensamble a presión (sin tornillos)</td></tr>
+        <tr><td>Color</td><td>Natural o pintado</td></tr>
+        <tr><td>Peso aproximado</td><td>15 kg</td></tr>
+        <tr><td>Dimensiones</td><td>Alto × Ancho × Fondo</td></tr>
+        <tr>
+          <td>Capacidad cubierta superior</td>
+          <td>
+            20 kg (recomendado)
+            <div class="specs-meter" data-max="20" data-value="20"><div class="fill"></div></div>
+          </td>
+        </tr>
+        <tr>
+          <td>Capacidad repisa inferior</td>
+          <td>
+            10 kg (recomendado)
+            <div class="specs-meter" data-max="20" data-value="10"><div class="fill"></div></div>
+          </td>
+        </tr>
+        <tr><td>Uso</td><td>Dormitorio</td></tr>
+      </table>
+      <button class="specs-note-btn" id="open-tech-note" aria-haspopup="dialog" aria-controls="modal-tech-note">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>
+        Nota técnica y recomendaciones
+      </button>
+      <p class="specs-note">Capacidades válidas para carga uniformemente distribuida. Evitar impactos o cargas puntuales concentradas.</p>
+    </div>
+    <div class="specs-visual">
+      <img id="planos-img" class="planos-img" alt="Planos estimados NÓRDIC 12" src=""/>
+      <div class="planos-actions">
+        <a id="download-planos" class="btn-ghost" href="#" download="planos-estimados.jpg">Descargar JPG</a>
+        <a id="regen-planos" class="btn-ghost" href="#">Regenerar diagrama</a>
+      </div>
+      <p>Diagrama de referencia</p>
+      
+    </div>
+  </div>
+</section>
+
+<!-- 5. FABRICACIÓN -->
+<section id="fabricacion">
+  <p class="section-eyebrow">Proceso de fabricación</p>
+  <h2 class="section-title">¿Cómo fue fabricada?</h2>
+  <p class="section-body">Del diseño CAD y modelado 3D a la programación CAM, fresado CNC, lijado, ensamble a presión y control final: cada etapa asegura precisión y calidad. Haz clic en cualquier paso para ver los detalles.</p>
+
+  <div class="process-steps" id="process-steps">
+    <!-- Steps generated from data via JS (progressive enhancement) -->
+    <div class="process-step" data-step="cad" tabindex="0">
+      <span class="step-num-badge">1</span>
+      <div class="step-icon" aria-hidden="true">📐</div>
+      <div class="step-label">Diseño CAD</div>
+      <p class="step-desc">Se realiza el diseño 3D con software CAD.</p>
+    </div>
+    <div class="process-step" data-step="modelado" tabindex="0">
+      <span class="step-num-badge">2</span>
+      <div class="step-icon">📦</div>
+      <div class="step-label">Modelado 3D</div>
+      <p class="step-desc">Modelo detallado de piezas y ensamble.</p>
+    </div>
+    <div class="process-step" data-step="cam" tabindex="0">
+      <span class="step-num-badge">3</span>
+      <div class="step-icon">🧭</div>
+      <div class="step-label">Programación CAM</div>
+      <p class="step-desc">Trayectorias de herramienta para CNC.</p>
+    </div>
+    <div class="process-step" data-step="fresado" tabindex="0">
+      <span class="step-num-badge">4</span>
+      <div class="step-icon">🛠️</div>
+      <div class="step-label">Fresado CNC</div>
+      <p class="step-desc">Corte en MDF 12 mm con fresadora.</p>
+    </div>
+    <div class="process-step" data-step="lijado" tabindex="0">
+      <span class="step-num-badge">5</span>
+      <div class="step-icon">🧰</div>
+      <div class="step-label">Lijado</div>
+      <p class="step-desc">Eliminación de rebabas y suavizado.</p>
+    </div>
+    <div class="process-step" data-step="ensamble" tabindex="0">
+      <span class="step-num-badge">6</span>
+      <div class="step-icon">🧩</div>
+      <div class="step-label">Ensamblaje</div>
+      <p class="step-desc">Uniones a presión sin tornillos.</p>
+    </div>
+    <div class="process-step" data-step="control" tabindex="0">
+      <span class="step-num-badge">7</span>
+      <div class="step-icon">🛡️</div>
+      <div class="step-label">Control de calidad</div>
+      <p class="step-desc">Ajuste, estabilidad y acabado.</p>
+    </div>
+    <div class="process-step" data-step="producto" tabindex="0">
+      <span class="step-num-badge">8</span>
+      <div class="step-icon">📦</div>
+      <div class="step-label">Producto terminado</div>
+      <p class="step-desc">Listo para uso o comercialización.</p>
+    </div>
+  </div>
+
+  <!-- Interactive detail card -->
+  <div id="process-detail-card" class="process-detail-card" role="dialog" aria-modal="true" aria-labelledby="pdc-title">
+    <div class="pdc-body">
+      <div class="pdc-header">
+        <div class="pdc-title" id="pdc-title"><span id="pdc-emoji">📐</span><span id="pdc-heading">Título</span></div>
+        <button class="pdc-close" id="pdc-close">Cerrar</button>
+      </div>
+      <div class="pdc-content" id="pdc-content"></div>
+      <div class="pdc-actions"></div>
+    </div>
+  </div>
+</section>
+
+<!-- 6. POR QUÉ ELEGIRNOS -->
+<section id="por-que">
+  <p class="section-eyebrow">Ventajas del producto</p>
+  <h2 class="section-title">¿Por qué elegir NÓRDIC 12?</h2>
+  <div class="why-grid">
+    <div class="why-card">
+      <div class="why-icon">🎨</div>
+      <h3>Diseño moderno y elegante</h3>
+      <p>Líneas limpias y estilo minimalista que combina con cualquier decoración de dormitorio.</p>
+    </div>
+    <div class="why-card">
+      <div class="why-icon">⚙️</div>
+      <h3>Fabricación CNC de precisión</h3>
+      <p>Fresado CNC que garantiza ajuste perfecto y acabados de alta calidad en cada pieza.</p>
+    </div>
+    <div class="why-card">
+      <div class="why-icon">🔩</div>
+      <h3>Ensamblaje a presión</h3>
+      <p>Sin tornillos visibles. Armado intuitivo que cualquier persona puede realizar en minutos.</p>
+    </div>
+    <div class="why-card">
+      <div class="why-icon">📚</div>
+      <h3>Compartimientos funcionales</h3>
+      <p>Espacio superior y repisa inferior para mantener tus objetos siempre organizados.</p>
+    </div>
+    <div class="why-card">
+      <div class="why-icon">💪</div>
+      <h3>Estructura firme y resistente</h3>
+      <p>MDF de 12 mm procesado con alta precisión para una estructura robusta y duradera.</p>
+    </div>
+    <div class="why-card">
+      <div class="why-icon">🏠</div>
+      <h3>Ideal para cualquier espacio</h3>
+      <p>Perfecta para hogares, departamentos, dormitorios de estudiantes y espacios reducidos.</p>
+    </div>
+    <div class="why-card">
+      <div class="why-icon">🧽</div>
+      <h3>Superficie fácil de limpiar</h3>
+      <p>Acabado liso que no acumula polvo y se limpia con un simple paño húmedo.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 7. MODELO 3D -->
+<section id="modelo-3d">
+  <p class="section-eyebrow">Visualización interactiva</p>
+  <h2 class="section-title">Modelo 3D interactivo</h2>
+  <p class="section-body">Explora NÓRDIC 12 desde todos los ángulos. Rota, acerca y examina cada detalle del mueble antes de adquirirlo.</p>
+  <div class="model-placeholder">
+    <div id="model3d-container" class="model-viewport">
+      <div class="model-loading" id="model3d-loading">Cargando modelo 3D…</div>
+      <div class="viewer-controls" aria-label="Controles del visor 3D">
+        <button class="vc-btn" id="vc-zoom-in" title="Acercarse">＋</button>
+        <button class="vc-btn" id="vc-zoom-out" title="Alejarse">－</button>
+        <button class="vc-btn" id="vc-rotate" title="Rotar">⟳</button>
+        <button class="vc-btn" id="vc-reset" title="Original">⤾</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 8. PERSONALIZACIÓN -->
+<section id="personalizacion">
+  <p class="section-eyebrow">Opciones del producto</p>
+  <h2 class="section-title">Elige tu NÓRDIC 12</h2>
+  <p class="section-body">Personaliza tu mesa de noche según tu estilo y necesidades.</p>
+  <div class="custom-layout">
+    <div class="custom-group custom-colors">
+      <h3>Color del acabado</h3>
+      <!-- Swatches at left -->
+      <div class="swatch-wrap">
+        <div style="text-align:center">
+          <div class="swatch" data-variant="white-sample.png" data-name="Blanco" style="background:#F5F0E8; border: 2px solid #DDD;" title="Blanco" role="radio" aria-checked="true" aria-selected="true" tabindex="0"></div>
+          <p style="font-size:0.65rem;color:var(--ink-light);margin-top:0.4rem;">Blanco</p>
+        </div>
+        <div style="text-align:center">
+          <div class="swatch" data-variant="green-sampple.png" data-name="Verde" style="background:#4A6741; border: 2px solid #DDD;" title="Verde" role="radio" aria-checked="false" tabindex="0"></div>
+          <p style="font-size:0.65rem;color:var(--ink-light);margin-top:0.4rem;">Verde</p>
+        </div>
+        <div style="text-align:center">
+          <div class="swatch" data-variant="black-sample.png" data-name="Negro" style="background:#1A1814;" title="Negro" role="radio" aria-checked="false" tabindex="0"></div>
+          <p style="font-size:0.65rem;color:var(--ink-light);margin-top:0.4rem;">Negro</p>
+        </div>
+        <div style="text-align:center">
+          <div class="swatch" data-variant="madera-sample.png" data-name="Madera" style="background:#D4B896;" title="Madera" role="radio" aria-checked="false" tabindex="0"></div>
+          <p style="font-size:0.65rem;color:var(--ink-light);margin-top:0.4rem;">Madera</p>
+        </div>
+        <div style="text-align:center">
+          <div class="swatch" data-variant="beige-sample.png" data-name="Beige" style="background:#A0785A;" title="Beige" role="radio" aria-checked="false" tabindex="0"></div>
+          <p style="font-size:0.65rem;color:var(--ink-light);margin-top:0.4rem;">Beige</p>
+        </div>
+        <div style="text-align:center">
+          <div class="swatch" data-variant="nobal-sample.png" data-name="Nogal" style="background:#5C3D28;" title="Nogal" role="radio" aria-checked="false" tabindex="0"></div>
+          <p style="font-size:0.65rem;color:var(--ink-light);margin-top:0.4rem;">Nogal</p>
+        </div>
+      </div>
+      <!-- Preview at right, original size (no cropping) -->
+      <div class="product-preview" aria-live="polite">
+        <img id="color-preview-img" alt="Vista previa del color" style="width:100%;height:auto;max-height:none;border-radius:8px;background:#202B38;object-fit:contain" />
+        <div class="preview-note">Vista previa del color</div>
+      </div>
+    </div>
+
+    <div class="custom-group custom-config">
+      <h3>Configuración</h3>
+      <form id="config-form" class="config-chips" aria-label="Configuración del producto">
+        <label class="chip"><input type="checkbox" name="config" value="Con cajón"> Con cajón</label>
+        <label class="chip"><input type="checkbox" name="config" value="Sin cajón"> Sin cajón</label>
+        <label class="chip"><input type="checkbox" name="config" value="Con ruedas"> Con ruedas</label>
+        <label class="chip"><input type="checkbox" name="config" value="Con repisa inferior"> Con repisa inferior</label>
+      </form>
+      <a id="btn-pedir" class="btn-primary btn-whatsapp" role="button" aria-label="Pedir mesa por WhatsApp">Pedir mesa</a>
+    </div>
+  </div>
+</section>
+
+<!-- 9. VIDEO -->
+<section id="video">
+  <p class="section-eyebrow">Proceso de fabricación</p>
+  <h2 class="section-title">Ve cómo se hace</h2>
+  <p class="section-body">Un vistazo al proceso completo: desde el corte CNC hasta el ensamble final. Transparencia total en nuestra fabricación.</p>
+  <div class="video-frame">
+    <video controls preload="metadata" poster="images/white-sample.png" playsinline>
+      <source src="videos/fabricacion.mp4" type="video/mp4" />
+      Tu navegador no soporta el video HTML5. Puedes descargarlo
+      <a href="videos/fabricacion.mp4">aquí</a>.
+    </video>
+  </div>
+</section>
+
+<!-- 10. BENEFICIOS MDF -->
+<section id="mdf">
+  <div class="mdf-grid">
+    <div>
+      <p class="section-eyebrow">Material</p>
+      <h2 class="section-title">¿Por qué MDF de 12 mm?</h2>
+      <div class="divider"></div>
+      <p class="section-body">El MDF (Medium Density Fiberboard) es el material preferido para muebles de diseño moderno por sus propiedades únicas de estabilidad y acabado.</p>
+      <ul class="mdf-list">
+        <li>Buena estabilidad dimensional — no se deforma con cambios de temperatura.</li>
+        <li>Superficie perfectamente lisa, ideal para acabados de alta calidad.</li>
+        <li>Fácil mantenimiento: limpieza con paño ligeramente húmedo.</li>
+        <li>Ideal para muebles modernos y de líneas rectas como NÓRDIC 12.</li>
+        <li>Compatible con todo tipo de acabados decorativos: lacado, vinilo, melamina.</li>
+      </ul>
+    </div>
+    <div class="mdf-visual">
+      <p class="section-eyebrow">En números</p>
+      <div class="mdf-stat-grid">
+        <div class="mdf-stat">
+          <div class="big">12</div>
+          <div class="sm">mm de espesor</div>
+        </div>
+        <div class="mdf-stat">
+          <div class="big">±0.1</div>
+          <div class="sm">mm de tolerancia</div>
+        </div>
+        <div class="mdf-stat">
+          <div class="big">680</div>
+          <div class="sm">kg/m³ densidad</div>
+        </div>
+        <div class="mdf-stat">
+          <div class="big">100%</div>
+          <div class="sm">pintable</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 11. SOSTENIBILIDAD -->
+<section id="sostenibilidad">
+  <p class="section-eyebrow">Compromiso ambiental</p>
+  <h2 class="section-title">Diseño responsable</h2>
+  <p class="section-body">En NÓRDIC 12 creemos que un buen diseño también debe ser responsable con el medio ambiente. Nuestro proceso está pensado para aprovechar al máximo los recursos y reducir desperdicios.</p>
+  <div class="sust-grid">
+    <div class="sust-card">
+      <div class="sust-icon">♻️</div>
+      <div>
+        <h4>Optimización del material</h4>
+        <p>Cada pieza se distribuye estratégicamente sobre el tablero de MDF para minimizar el desperdicio durante el corte CNC, aprovechando al máximo cada lámina de material.</p>
+      </div>
+    </div>
+    <div class="sust-card">
+      <div class="sust-icon">⏳</div>
+      <div>
+        <h4>Producto duradero</h4>
+        <p>Fabricamos para la durabilidad. Un mueble que dura muchos años es intrínsecamente más sostenible que uno de baja calidad que se reemplaza con frecuencia.</p>
+      </div>
+    </div>
+    <div class="sust-card">
+      <div class="sust-icon">📐</div>
+      <div>
+        <h4>Diseño digital primero</h4>
+        <p>El proceso 100% digital reduce los errores de fabricación y la necesidad de retrabajos, lo que significa menos material desperdiciado en cada producción.</p>
+      </div>
+    </div>
+    <div class="sust-card">
+      <div class="sust-icon">🌿</div>
+      <div>
+        <h4>Proceso limpio</h4>
+        <p>La tecnología CNC trabaja con precisión mínimizando polvo y residuos en comparación con métodos de corte tradicionales.</p>
+      </div>
+    </div>
+    <div class="sust-tagline">
+      Porque cuidar tu hogar también significa cuidar el planeta.<br>
+      <span style="font-size:0.9rem;opacity:0.8;">NÓRDIC 12 — diseño inteligente y uso responsable de los recursos. 🌿</span>
+    </div>
+  </div>
+</section>
+
+<!-- 12. OPINIONES -->
+<section id="opiniones">
+  <div class="reviews-header">
+    <p class="section-eyebrow">Testimonios</p>
+    <h2 class="section-title">Lo que dicen nuestros clientes</h2>
+    <div class="reviews-badge">
+      <span class="stars">★★★★★</span>
+      <span>4.9 / 5.0 — Valoración promedio</span>
+    </div>
+  </div>
+  <div class="reviews-grid">
+    <div class="review-card">
+      <div class="review-stars">★★★★★</div>
+      <p class="review-text">"Excelente acabado y muy fácil de ensamblar. No podía creer lo bien que quedó en mi dormitorio, parece sacada de una revista de decoración."</p>
+      <div class="reviewer">
+        <div class="reviewer-avatar">CM</div>
+        <div>
+          <div class="reviewer-name">Camila M.</div>
+          <div class="reviewer-loc">Lima, Perú</div>
+        </div>
+      </div>
+    </div>
+    <div class="review-card">
+      <div class="review-stars">★★★★★</div>
+      <p class="review-text">"Perfecta para espacios pequeños. La repisa inferior es super útil para guardar libros y el cajón tiene el tamaño justo para el cargador y audífonos."</p>
+      <div class="reviewer">
+        <div class="reviewer-avatar">RA</div>
+        <div>
+          <div class="reviewer-name">Ricardo A.</div>
+          <div class="reviewer-loc">Miraflores, Lima</div>
+        </div>
+      </div>
+    </div>
+    <div class="review-card">
+      <div class="review-stars">★★★★★</div>
+      <p class="review-text">"La calidad del corte CNC se nota en cada pieza. Todo encajó perfectamente sin necesidad de martillo ni fuerza. Totalmente recomendada."</p>
+      <div class="reviewer">
+        <div class="reviewer-avatar">VL</div>
+        <div>
+          <div class="reviewer-name">Valeria L.</div>
+          <div class="reviewer-loc">San Isidro, Lima</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+</section>
+
+<!-- 13. FAQ -->
+<section id="faq">
+  <p class="section-eyebrow">Preguntas frecuentes</p>
+  <h2 class="section-title">¿Tienes dudas?</h2>
+  <div class="faq-layout">
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">¿Necesita tornillos para armarse? <span class="arrow">▼</span></button>
+      <div class="faq-a">No. NÓRDIC 12 utiliza un sistema de ensamblaje a presión que no requiere tornillos ni herramientas especiales. Cada pieza encaja perfectamente gracias a la precisión del corte CNC.</div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">¿Cómo se limpia la mesa? <span class="arrow">▼</span></button>
+      <div class="faq-a">La superficie lisa del MDF facilita la limpieza. Basta con un paño ligeramente húmedo. Evita el uso de químicos agresivos, agua en exceso o estropajos abrasivos.</div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">¿Cuánto peso soporta? <span class="arrow">▼</span></button>
+      <div class="faq-a">La capacidad de carga está estimada bajo distribución uniforme del peso. Se recomienda evitar cargas puntuales excesivas o impactos sobre la superficie para preservar la estructura. Consulta la ficha técnica para el dato exacto.</div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">¿Es resistente a la humedad? <span class="arrow">▼</span></button>
+      <div class="faq-a">El MDF estándar no es impermeable. Se recomienda mantenerla alejada de fuentes de humedad directa. Para zonas con alta humedad, consulta las opciones de acabado hidrófugo disponibles.</div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">¿Viene armada o en piezas? <span class="arrow">▼</span></button>
+      <div class="faq-a">NÓRDIC 12 se entrega desarmada en un paquete compacto junto con la guía de ensamblaje. El proceso de armado es sencillo y puede realizarse sin herramientas en aproximadamente 15-20 minutos.</div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">¿Cuánto demora el envío? <span class="arrow">▼</span></button>
+      <div class="faq-a">El tiempo de producción y despacho es de 3 a 7 días hábiles según el acabado elegido. Los tiempos de entrega varían según tu ubicación. Consulta disponibilidad por WhatsApp.</div>
+    </div>
+  </div>
+</section>
+
+<!-- 14. CONTACTO -->
+<section id="contacto">
+  <p class="section-eyebrow">Contáctanos</p>
+  <h2 class="section-title">¿Listo para transformar tu espacio?</h2>
+  <p class="section-body">Escríbenos por el canal que prefieras — respondemos en menos de 24 horas.</p>
+  <div class="contact-channels">
+    <a href="https://wa.me/51962311831" class="channel-btn ch-whatsapp">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+      WhatsApp: +51 962311831
+    </a>
+    <a href="mailto:tocadoresSa@gmail.com" class="channel-btn ch-mail">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 4 10 10L22 4"/></svg>
+      Correo: tocadoresSa@gmail.com
+    </a>
+    <a href="https://instagram.com/tocadores_Sa" class="channel-btn ch-ig">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="white" stroke="none"/></svg>
+      Instagram: tocadores_Sa
+    </a>
+    <a href="https://facebook.com/TocadoresSA" class="channel-btn ch-fb">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+      Facebook: Tocadores SA
+    </a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div>
+    <div class="footer-brand">NÓR<span>DIC</span> 12</div>
+    <div class="footer-tagline">Diseño inteligente, precisión en cada detalle.</div>
+  </div>
+  <div class="footer-links">
+    <a href="policies.html#garantia">Garantía</a>
+    <a href="policies.html#devoluciones">Política de devoluciones</a>
+    <a href="policies.html#terminos">Términos y condiciones</a>
+    <a href="policies.html#privacidad">Política de privacidad</a>
+  </div>
+  <div class="footer-copy">© 2025 NÓRDIC 12. Todos los derechos reservados.</div>
+</footer>
+
+<script>
+  // Masonry-like grid for gallery preserving image proportions
+  (function() {
+    const grid = document.querySelector('.gallery-grid');
+    if (!grid) return;
+    // Switch to masonry mode only when JS is available
+    grid.classList.add('masonry');
+    const allItems = Array.from(grid.children);
+
+    function resizeGridItem(item) {
+      const styles = getComputedStyle(grid);
+      const rowHeight = parseInt(styles.getPropertyValue('grid-auto-rows')) || 8;
+      const gap = parseInt((styles.getPropertyValue('row-gap') || styles.getPropertyValue('gap') || '16').split(' ')[0]);
+      // Temporarily unset to measure full content height irrespective of current span
+      item.style.gridRowEnd = 'auto';
+      // Use scrollHeight for intrinsic content height (includes overflowing content)
+      const contentHeight = item.scrollHeight;
+      const rowSpan = Math.ceil((contentHeight + gap) / (rowHeight + gap));
+      item.style.gridRowEnd = `span ${rowSpan}`;
+    }
+
+    function resizeAll() { allItems.forEach(resizeGridItem); }
+
+    // Recalculate when each image loads
+    const images = grid.querySelectorAll('img');
+    images.forEach(img => {
+      const doResize = () => resizeGridItem(img.closest('.gallery-card'));
+      if (img.complete) {
+        if ('decode' in img) {
+          img.decode().then(doResize).catch(doResize);
+        } else {
+          requestAnimationFrame(doResize);
+        }
+      } else {
+        img.addEventListener('load', doResize);
+        img.addEventListener('error', doResize);
+      }
+    });
+    window.addEventListener('resize', resizeAll);
+    // Initial pass
+    window.addEventListener('load', resizeAll);
+  })();
+
+  // Color preview: swap full image by selected variant
+  (function colorPreviewSwap(){
+    const preview = document.getElementById('color-preview-img');
+    const heroImg = document.getElementById('hero-img-slot');
+    const video = document.querySelector('#video video');
+    const basePath = 'images/';
+    const defaultVariant = 'white-sample.png';
+
+    const swatches = Array.from(document.querySelectorAll('.swatch[data-variant]'));
+
+    // track selected name for WhatsApp text
+    let selectedColorName = 'Blanco';
+
+    function applyVariant(fileName){
+      const src = basePath + fileName;
+      if (preview) preview.src = src;
+      if (heroImg) heroImg.src = src;
+      if (video) video.setAttribute('poster', src);
+    }
+
+    function selectSwatch(el){
+      swatches.forEach(s => { s.setAttribute('aria-checked','false'); s.removeAttribute('aria-selected'); });
+      el.setAttribute('aria-checked','true');
+      el.setAttribute('aria-selected','true');
+      const file = el.getAttribute('data-variant') || defaultVariant;
+      selectedColorName = el.getAttribute('data-name') || selectedColorName;
+      applyVariant(file);
+    }
+
+    swatches.forEach(sw => {
+      sw.addEventListener('click', () => selectSwatch(sw));
+      sw.addEventListener('keydown', (e) => { if (e.key==='Enter' || e.key===' ') { e.preventDefault(); selectSwatch(sw); } });
+    });
+
+    // Initialize default and reflect selected swatch if any marked
+    const selected = document.querySelector('.swatch[aria-selected="true"]');
+    selectedColorName = selected?.getAttribute('data-name') || selectedColorName;
+    applyVariant(selected?.getAttribute('data-variant') || defaultVariant);
+
+    // Build WhatsApp message based on current selections
+    const pedirBtn = document.getElementById('btn-pedir');
+    const configForm = document.getElementById('config-form');
+    function buildMessage(){
+      const checks = Array.from(configForm?.querySelectorAll('input[type="checkbox"]')||[])
+        .filter(c=>c.checked)
+        .map(c=>`• ${c.value}`);
+      const opciones = checks.length ? ` con:\n${checks.join('\n')}` : '';
+      const saludo = 'Buenos días, quisiera una Nordic 12 en color ' + selectedColorName + opciones;
+      return encodeURIComponent(saludo);
+    }
+    pedirBtn?.addEventListener('click', ()=>{
+      const phone = '51962311831';
+      const url = `https://wa.me/${phone}?text=${buildMessage()}`;
+      window.open(url, '_blank');
+    });
+  })();
+
+  function toggleFaq(btn) {
+    const answer = btn.nextElementSibling;
+    const isOpen = answer.classList.contains('open');
+    document.querySelectorAll('.faq-a.open').forEach(a => a.classList.remove('open'));
+    document.querySelectorAll('.faq-q.open').forEach(b => b.classList.remove('open'));
+    if (!isOpen) {
+      answer.classList.add('open');
+      btn.classList.add('open');
+    }
+  }
+
+  // Enhance specs: fill meters based on data-value/data-max
+  (function enhanceSpecs(){
+    const meters = document.querySelectorAll('.specs-meter');
+    meters.forEach(m => {
+      const max = parseFloat(m.getAttribute('data-max')||'1');
+      const val = parseFloat(m.getAttribute('data-value')||'0');
+      const pct = Math.max(0, Math.min(100, (val/max)*100));
+      const fill = m.querySelector('.fill');
+      if (fill) fill.style.width = pct + '%';
+      m.title = `${val} kg de ${max} kg`;
+    });
+  })();
+
+  // Technical note modal
+  (function techNoteModal(){
+    const modalHtml = `
+      <div class="modal-backdrop" id="modal-tech-note" role="dialog" aria-modal="true" aria-labelledby="mtitle">
+        <div class="modal">
+          <div class="modal-header">
+            <div class="modal-title" id="mtitle">Nota técnica — Cargas y uso</div>
+            <button class="close-btn" id="close-tech-note">Cerrar</button>
+          </div>
+          <div class="modal-body">
+            <p><strong>Capacidad recomendada:</strong> 20 kg en cubierta superior y 10 kg en repisa inferior, con <em>carga uniformemente distribuida</em>.</p>
+            <p><strong>Peso aproximado del mueble:</strong> 15 kg. Evitar impactos, arrastres y cargas puntuales concentradas en bordes.</p>
+            <p><strong>Uso previsto:</strong> dormitorio. Mantener alejado de humedad directa. Si se pinta o laquea, seguir las recomendaciones del fabricante del acabado.</p>
+          </div>
+          <div class="modal-actions"><button class="close-btn" id="close-tech-note-2">Entendido</button></div>
+        </div>
+      </div>`;
+    document.body.insertAdjacentHTML('beforeend', modalHtml);
+    const openBtn = document.getElementById('open-tech-note');
+    const backdrop = document.getElementById('modal-tech-note');
+    const close1 = document.getElementById('close-tech-note');
+    const close2 = document.getElementById('close-tech-note-2');
+    function open(){ backdrop.classList.add('open'); }
+    function close(){ backdrop.classList.remove('open'); }
+    if (openBtn) openBtn.addEventListener('click', (e)=>{ e.preventDefault(); open(); });
+    [close1, close2].forEach(b=> b && b.addEventListener('click', close));
+    document.addEventListener('keydown', (e)=>{ if(e.key==='Escape') close(); });
+    backdrop?.addEventListener('click', (e)=>{ if(e.target===backdrop) close(); });
+  })();
+
+  // Generate planos JPG dynamically using Canvas and keep palette
+  (function planosGenerator(){
+    function drawPlanos() {
+      const W = 900, H = 600;
+      const canvas = document.createElement('canvas');
+      canvas.width = W; canvas.height = H;
+      const ctx = canvas.getContext('2d');
+      // palette
+      const sand = '#F5F0E8', ink = '#1A1814', oak = '#B8956A', oakLight = '#D4B896';
+      // background
+      ctx.fillStyle = sand; ctx.fillRect(0,0,W,H);
+      // title strip
+      ctx.fillStyle = '#EDE6D8'; ctx.fillRect(0,0,W,56);
+      ctx.fillStyle = ink; ctx.font = '600 22px Inter, Arial';
+      ctx.fillText('NÓRDIC 12 — Planos estimados', 24, 36);
+
+      // helpers
+      function panel(x,y,w,h,label){
+        ctx.save();
+        ctx.strokeStyle = oak; ctx.lineWidth = 2; ctx.fillStyle = 'rgba(184,149,106,0.07)';
+        ctx.fillRect(x,y,w,h); ctx.strokeRect(x,y,w,h);
+        ctx.fillStyle = ink; ctx.font = '600 14px Inter, Arial';
+        ctx.fillText(label, x, y-10);
+        ctx.restore();
+      }
+      function shelf(x,y,w){ ctx.strokeStyle = oakLight; ctx.lineWidth = 2; ctx.beginPath(); ctx.moveTo(x,y); ctx.lineTo(x+w,y); ctx.stroke(); }
+      function legs(x,y,w,h){ ctx.fillStyle = 'rgba(184,149,106,0.2)'; ctx.fillRect(x,y,w,h); }
+      function dimH(x1,y,x2,text){
+        ctx.strokeStyle = '#A88C64'; ctx.lineWidth = 1; ctx.setLineDash([6,4]);
+        ctx.beginPath(); ctx.moveTo(x1,y); ctx.lineTo(x2,y); ctx.stroke(); ctx.setLineDash([]);
+        ctx.fillStyle = '#8A6F4B'; ctx.font='12px Inter,Arial'; ctx.textAlign='center'; ctx.fillText(text,(x1+x2)/2,y-6);
+      }
+      function dimV(x,y1,y2,text){
+        ctx.strokeStyle = '#A88C64'; ctx.lineWidth = 1; ctx.setLineDash([6,4]);
+        ctx.beginPath(); ctx.moveTo(x,y1); ctx.lineTo(x,y2); ctx.stroke(); ctx.setLineDash([]);
+        ctx.fillStyle = '#8A6F4B'; ctx.font='12px Inter,Arial'; ctx.textAlign='left'; ctx.save();
+        ctx.translate(x+6,(y1+y2)/2); ctx.rotate(-Math.PI/2); ctx.fillText(text,0,0); ctx.restore();
+      }
+
+      // Front view
+      const fx=70, fy=120, fw=300, fh=320;
+      panel(fx,fy,fw,fh,'Frontal');
+      shelf(fx+14, fy+120, fw-28);
+      legs(fx+14, fy+fh-22, 24, 22);
+      legs(fx+fw-38, fy+fh-22, 24, 22);
+      dimH(fx, fy-16, fx+fw, 'ANCHO');
+      dimV(fx+fw+16, fy, fy+fh, 'ALTO');
+
+      // Side view
+      const sx=420, sy=160, sw=200, sh=280;
+      panel(sx,sy,sw,sh,'Lateral');
+      shelf(sx+14, sy+120, sw-28);
+      legs(sx+14, sy+sh-22, 24, 22);
+      legs(sx+sw-38, sy+sh-22, 24, 22);
+      dimH(sx, sy-16, sx+sw, 'FONDO');
+
+      // Top view
+      const tx=70, ty=480, tw=300, th=70;
+      panel(tx,ty,tw,th,'Superior');
+      dimH(tx, ty+th+20, tx+tw, 'ANCHO');
+
+      // footer
+      ctx.fillStyle = '#7A756C'; ctx.font='12px Inter, Arial';
+      ctx.fillText('Diagrama generado automáticamente a modo de referencia. Sustituir por planos técnicos oficiales cuando estén disponibles.', 24, H-16);
+
+      const url = canvas.toDataURL('image/jpeg', 0.92);
+      return url;
+    }
+    function attach(){
+      const img = document.getElementById('planos-img');
+      const dl = document.getElementById('download-planos');
+      const regen = document.getElementById('regen-planos');
+      if (!img || !dl || !regen) return;
+      const url = drawPlanos();
+      img.src = url; dl.href = url;
+      regen.addEventListener('click', (e)=>{ e.preventDefault(); const n = drawPlanos(); img.src = n; dl.href = n; });
+    }
+    window.addEventListener('load', attach);
+  })();
+
+  // Process detail card: interactive steps with modal card
+  (function processDetail(){
+    const data = {
+      cad: {
+        emoji: '📐',
+        title: 'Diseño CAD',
+        html: '<p>Se realiza el diseño 3D de la mesa de noche utilizando software CAD. Aquí se definen medidas, tolerancias y uniones a presión.</p>'
+      },
+      modelado: {
+        emoji: '📦',
+        title: 'Modelado 3D',
+        html: '<p>Se desarrolla el modelo 3D detallado de todas las piezas y el ensamble para validar interferencias y estabilidad.</p>'
+      },
+      cam: {
+        emoji: '🧭',
+        title: 'Programación CAM',
+        html: '<p>Se generan las trayectorias de herramienta (G-code) para el fresado CNC optimizando tiempos, acabados y uso del material.</p>'
+      },
+      fresado: {
+        emoji: '🛠️',
+        title: 'Fresado CNC',
+        html: '<p>Se realiza el corte de las piezas en MDF de 12 mm mediante fresadora CNC con precisión milimétrica.</p>'
+      },
+      lijado: {
+        emoji: '🧰',
+        title: 'Lijado',
+        html: '<p>Se lijan las piezas para eliminar rebabas, suavizar cantos y mejorar el acabado superficial.</p>'
+      },
+      ensamble: {
+        emoji: '🧩',
+        title: 'Ensamblaje',
+        html: '<p>Las piezas se ensamblan mediante uniones a presión, sin necesidad de tornillos; el ajuste queda firme y limpio.</p>'
+      },
+      control: {
+        emoji: '🛡️',
+        title: 'Control de calidad',
+        html: '<p>Se verifica el ajuste, la estabilidad y el acabado del producto final, corrigiendo cualquier desviación detectada.</p>'
+      },
+      producto: {
+        emoji: '📦',
+        title: 'Producto terminado',
+        html: '<p>Mesa de noche lista para su uso o comercialización, con empaque de protección y guía de ensamblaje.</p>'
+      }
+    };
+    const card = document.getElementById('process-detail-card');
+    const titleEl = document.getElementById('pdc-heading');
+    const emojiEl = document.getElementById('pdc-emoji');
+    const contentEl = document.getElementById('pdc-content');
+    const closeBtn = document.getElementById('pdc-close');
+    const steps = document.querySelectorAll('#process-steps .process-step');
+
+    function openFor(key){
+      const info = data[key];
+      if (!info) return;
+      titleEl.textContent = info.title;
+      emojiEl.textContent = info.emoji;
+      contentEl.innerHTML = info.html;
+      card.classList.add('open');
+    }
+    function close(){ card.classList.remove('open'); }
+    steps.forEach(s => {
+      s.addEventListener('click', () => openFor(s.getAttribute('data-step')));
+      s.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openFor(s.getAttribute('data-step')); }
+      });
+      s.setAttribute('role','button');
+      s.setAttribute('aria-haspopup','dialog');
+      s.setAttribute('title','Ver detalle');
+    });
+    [closeBtn].forEach(b => b && b.addEventListener('click', close));
+    card?.addEventListener('click', (e)=>{ if(e.target === card) close(); });
+    document.addEventListener('keydown', (e)=>{ if(e.key==='Escape') close(); });
+  })();
+</script>
+
+<!-- ES module viewer with ESM CDN to avoid bare specifier issues -->
+<script type="module" src="viewer.js?v=4"></script>
+</body>
+</html>
