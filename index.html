@@ -1149,6 +1149,10 @@
     </div>
     <div class="specs-visual">
       <iframe id="planos-frame" class="planos-frame" title="Vista de planos PDF"></iframe>
+      <!-- Mobile-friendly canvas fallback (PDF.js). Hidden on desktop; shown on phones. -->
+      <div id="planos-canvas-container" class="planos-frame" style="display:none; padding:0; overflow:auto;">
+        <canvas id="planos-canvas" style="display:block; width:100%; height:auto;"></canvas>
+      </div>
       <div class="planos-actions">
         <button id="plano-prev" class="btn-ghost" type="button" aria-label="Plano anterior">←</button>
         <span id="plano-indicator" style="align-self:center;font-size:.85rem;color:rgba(255,255,255,0.85)">Plano 1 de 5</span>
@@ -1720,6 +1724,8 @@
   // Ficha técnica: visor de PDF con navegación entre planos 1-5
   (function planosPdfViewer(){
     const iframe = document.getElementById('planos-frame');
+    const canvasWrap = document.getElementById('planos-canvas-container');
+    const canvasEl = document.getElementById('planos-canvas');
     const prevBtn = document.getElementById('plano-prev');
     const nextBtn = document.getElementById('plano-next');
     const indicator = document.getElementById('plano-indicator');
@@ -1729,12 +1735,83 @@
     const files = [1,2,3,4,5].map(n => `planos/Plano${n}.pdf`);
     let idx = 0; // start at Plano1
 
+    // Decide rendering strategy: iframe for desktop, PDF.js canvas for mobile.
+    const ua = (navigator.userAgent||'');
+    const looksMobile = /Mobi|Android|iPhone|iPad|iPod/i.test(ua);
+    const forceMobile = (location.hash||'').includes('forceMobile'); // testing hook
+    const useCanvas = !!(canvasWrap && canvasEl && (looksMobile || forceMobile));
+
+    // PDF.js lazy loader and renderer
+    let pdfjsLib = null;
+    let currentPdf = null;
+    let renderPending = false;
+
+    function ensurePdfJs(){
+      return new Promise((resolve, reject) => {
+        if (pdfjsLib) return resolve(pdfjsLib);
+        const script = document.createElement('script');
+        script.src = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js';
+        script.async = true;
+        script.onload = () => {
+          pdfjsLib = window['pdfjs-dist/build/pdf'];
+          if (!pdfjsLib) { reject(new Error('PDF.js no disponible')); return; }
+          pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+          resolve(pdfjsLib);
+        };
+        script.onerror = () => reject(new Error('No se pudo cargar PDF.js'));
+        document.head.appendChild(script);
+      });
+    }
+
+    async function renderCanvas(url){
+      try {
+        renderPending = true;
+        const lib = await ensurePdfJs();
+        if (currentPdf) { try { await currentPdf.destroy(); } catch(e){} currentPdf = null; }
+        currentPdf = await lib.getDocument(url).promise;
+        const page = await currentPdf.getPage(1);
+        // Fit to container width
+        const wrap = canvasWrap;
+        const targetWidth = Math.max(240, wrap.clientWidth || wrap.offsetWidth || 520);
+        const viewport = page.getViewport({ scale: 1 });
+        const scale = targetWidth / viewport.width;
+        const scaled = page.getViewport({ scale });
+        const canvas = canvasEl;
+        const ctx = canvas.getContext('2d');
+        canvas.width = Math.floor(scaled.width);
+        canvas.height = Math.floor(scaled.height);
+        canvas.style.width = '100%';
+        canvas.style.height = 'auto';
+        await page.render({ canvasContext: ctx, viewport: scaled }).promise;
+      } catch (e) {
+        console.error('PDF render error', e);
+        // Fallback: show iframe if canvas fails
+        if (iframe) { iframe.style.display = 'block'; }
+        if (canvasWrap) { canvasWrap.style.display = 'none'; }
+        iframe.src = url + '#page=1&zoom=page-width';
+      } finally {
+        renderPending = false;
+      }
+    }
+
     function updateView(){
-      iframe.src = files[idx] + '#page=1&zoom=page-width';
+      const url = files[idx];
       indicator.textContent = `Plano ${idx+1} de ${files.length}`;
-      download.href = files[idx];
+      download.href = url;
       prevBtn.disabled = (idx === 0);
       nextBtn.disabled = (idx === files.length - 1);
+      if (useCanvas) {
+        if (iframe) iframe.style.display = 'none';
+        if (canvasWrap) canvasWrap.style.display = 'block';
+        renderCanvas(url);
+      } else {
+        if (canvasWrap) canvasWrap.style.display = 'none';
+        if (iframe) {
+          iframe.style.display = 'block';
+          // Try a set of fitting parameters for broader compatibility
+          iframe.src = url + '#view=FitH&zoom=page-width';
+        }
+      }
     }
     function go(delta){
       const next = Math.max(0, Math.min(files.length-1, idx + delta));
@@ -1750,6 +1827,15 @@
     });
 
     updateView();
+
+    // Re-render on resize for canvas mode
+    let resizeTimer = null;
+    window.addEventListener('resize', () => {
+      if (!useCanvas) return;
+      if (renderPending) return;
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(() => updateView(), 200);
+    });
   })();
 
   // Process detail card: interactive steps with modal card
