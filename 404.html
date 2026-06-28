@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Página no encontrada — NÓRDIC 12</title>
+  <meta http-equiv="refresh" content="3; url=./index.html" />
+  <style>
+    body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Inter, Arial, sans-serif; display:flex; align-items:center; justify-content:center; min-height:100vh; margin:0; background:#F5F0E8; color:#1A1814; }
+    .card { background:#fff; border:1px solid #EDE6D8; border-radius:12px; padding:1.5rem 1.6rem; max-width:560px; text-align:center; box-shadow: 0 6px 24px rgba(0,0,0,.06); }
+    h1 { font-size:1.35rem; margin:.2rem 0 .6rem; }
+    p { color:#555; line-height:1.6; }
+    a { color:#B8956A; text-decoration:none; font-weight:600; }
+  </style>
+  <script>
+    // GitHub Pages SPA-style redirect helper if coming from a deep link
+    (function(){
+      // If on GH Pages with path like /repo/anything, try to send to index with hash
+      var l = window.location;
+      if (!/404\.html$/.test(l.pathname)) return;
+      // Optional: preserve path as hash for client routers
+      var target = l.origin + l.pathname.replace(/404\.html$/, '') + 'index.html';
+      // Fallback immediate redirect
+      setTimeout(function(){ window.location.replace(target); }, 0);
+    })();
+  </script>
+</head>
+<body>
+  <div class="card">
+    <div style="font-size:2rem">🙈</div>
+    <h1>Página no encontrada</h1>
+    <p>Serás redirigido a la página principal en unos segundos.</p>
+    <p><a href="./index.html">Ir ahora</a></p>
+  </div>
+</body>
+</html>
