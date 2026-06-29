@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>NÓRDIC 12 – Mesa de Noche Minimalista</title>
-<link rel="icon" href="images/white-sample.png" type="image/png">
+<link rel="icon" href="images/green-sample.png" type="image/png">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -1006,7 +1006,7 @@
   <!-- Right: product image -->
   <div class="hero-right">
     <!-- Default preview uses white variant -->
-    <img src="images/white-sample.png" alt="Mesa de noche NÓRDIC 12" class="hero-product-img" id="hero-img-slot" />
+    <img src="images/green-sample.png" alt="Mesa de noche NÓRDIC 12" class="hero-product-img" id="hero-img-slot" />
   </div>
 
   <!-- Full-width bottom bar -->
@@ -1124,7 +1124,7 @@
         <tr><td>Tipo de unión</td><td>Ensamble a presión (sin tornillos)</td></tr>
         <tr><td>Color</td><td>Natural o pintado</td></tr>
         <tr><td>Peso aproximado</td><td>15 kg</td></tr>
-        <tr><td>Dimensiones</td><td>Alto × Ancho × Fondo</td></tr>
+        <tr><td>Dimensiones</td><td>Alto (70cm) × Ancho (50cm) × Largo (50cm)</td></tr>
         <tr>
           <td>Capacidad cubierta superior</td>
           <td>
@@ -1155,7 +1155,7 @@
       </div>
       <div class="planos-actions">
         <button id="plano-prev" class="btn-ghost" type="button" aria-label="Plano anterior">←</button>
-        <span id="plano-indicator" style="align-self:center;font-size:.85rem;color:rgba(255,255,255,0.85)">Plano 1 de 5</span>
+        <span id="plano-indicator" style="align-self:center;font-size:.85rem;color:rgba(255,255,255,0.85)">Plano 1 de 8</span>
         <button id="plano-next" class="btn-ghost" type="button" aria-label="Siguiente plano">→</button>
         <a id="download-planos" class="btn-ghost" href="planos/Plano1.pdf" download>Descargar PDF</a>
       </div>
@@ -1308,11 +1308,11 @@
       <!-- Swatches at left -->
       <div class="swatch-wrap">
         <div style="text-align:center">
-          <div class="swatch" data-variant="white-sample.png" data-name="Blanco" style="background:#F5F0E8; border: 2px solid #DDD;" title="Blanco" role="radio" aria-checked="true" aria-selected="true" tabindex="0"></div>
+          <div class="swatch" data-variant="white-sample.png" data-name="Blanco" style="background:#F5F0E8; border: 2px solid #DDD;" title="Blanco" role="radio" aria-checked="false" tabindex="0"></div>
           <p style="font-size:0.65rem;color:var(--ink-light);margin-top:0.4rem;">Blanco</p>
         </div>
         <div style="text-align:center">
-          <div class="swatch" data-variant="green-sampple.png" data-name="Verde" style="background:#4A6741; border: 2px solid #DDD;" title="Verde" role="radio" aria-checked="false" tabindex="0"></div>
+          <div class="swatch" data-variant="green-sample.png" data-name="Verde" style="background:#4A6741; border: 2px solid #DDD;" title="Verde" role="radio" aria-checked="true" aria-selected="true" tabindex="0"></div>
           <p style="font-size:0.65rem;color:var(--ink-light);margin-top:0.4rem;">Verde</p>
         </div>
         <div style="text-align:center">
@@ -1328,7 +1328,7 @@
           <p style="font-size:0.65rem;color:var(--ink-light);margin-top:0.4rem;">Beige</p>
         </div>
         <div style="text-align:center">
-          <div class="swatch" data-variant="nobal-sample.png" data-name="Nogal" style="background:#5C3D28;" title="Nogal" role="radio" aria-checked="false" tabindex="0"></div>
+          <div class="swatch" data-variant="nogal-sample.png" data-name="Nogal" style="background:#5C3D28;" title="Nogal" role="radio" aria-checked="false" tabindex="0"></div>
           <p style="font-size:0.65rem;color:var(--ink-light);margin-top:0.4rem;">Nogal</p>
         </div>
       </div>
@@ -1342,10 +1342,10 @@
     <div class="custom-group custom-config">
       <h3>Configuración</h3>
       <form id="config-form" class="config-chips" aria-label="Configuración del producto">
-        <label class="chip"><input type="checkbox" name="config" value="Con cajón"> Con cajón</label>
+        <label class="chip"><input type="checkbox" name="config" value="Sin Patas"> Sin Patas</label>
         <label class="chip"><input type="checkbox" name="config" value="Sin cajón"> Sin cajón</label>
+        <label class="chip"><input type="checkbox" name="config" value="Sin Espejo"> Sin Espejo</label>
         <label class="chip"><input type="checkbox" name="config" value="Con ruedas"> Con ruedas</label>
-        <label class="chip"><input type="checkbox" name="config" value="Con repisa inferior"> Con repisa inferior</label>
       </form>
       <a id="btn-pedir" class="btn-primary btn-whatsapp" role="button" aria-label="Pedir mesa por WhatsApp">Pedir mesa</a>
     </div>
@@ -1358,7 +1358,7 @@
   <h2 class="section-title">Ve cómo se hace</h2>
   <p class="section-body">Un vistazo al proceso completo: desde el corte CNC hasta el ensamble final. Transparencia total en nuestra fabricación.</p>
   <div class="video-frame">
-    <video controls preload="metadata" poster="images/white-sample.png" playsinline>
+    <video controls preload="metadata" poster="images/green-sample.png" playsinline>
       <source src="videos/fabricacion.mp4" type="video/mp4" />
       Tu navegador no soporta el video HTML5. Puedes descargarlo
       <a href="videos/fabricacion.mp4">aquí</a>.
@@ -1616,15 +1616,15 @@
     const heroImg = document.getElementById('hero-img-slot');
     const video = document.querySelector('#video video');
     const basePath = 'images/';
-    const defaultVariant = 'white-sample.png';
+    const defaultVariant = 'green-sample.png';
 
     const swatches = Array.from(document.querySelectorAll('.swatch[data-variant]'));
 
     // track selected name for WhatsApp text
-    let selectedColorName = 'Blanco';
+    let selectedColorName = 'Verde';
 
     function applyVariant(fileName){
-      const src = basePath + fileName;
+      const src = basePath + fileName + '?v=1';
       if (preview) preview.src = src;
       if (heroImg) heroImg.src = src;
       if (video) video.setAttribute('poster', src);
@@ -1638,6 +1638,14 @@
       selectedColorName = el.getAttribute('data-name') || selectedColorName;
       applyVariant(file);
     }
+
+    // Preload all swatch images to avoid flicker and catch missing assets early
+    const variants = swatches.map(sw => sw.getAttribute('data-variant')).filter(Boolean);
+    variants.forEach(v => { const img = new Image(); img.src = basePath + v + '?v=1'; });
+
+    // Fallback to default image if any target fails to load
+    if (preview) preview.addEventListener('error', () => { preview.src = basePath + defaultVariant + '?v=1'; });
+    if (heroImg) heroImg.addEventListener('error', () => { heroImg.src = basePath + defaultVariant + '?v=1'; });
 
     swatches.forEach(sw => {
       sw.addEventListener('click', () => selectSwatch(sw));
@@ -1732,7 +1740,7 @@
     const download = document.getElementById('download-planos');
     if (!iframe || !prevBtn || !nextBtn || !indicator || !download) return;
 
-    const files = [1,2,3,4,5].map(n => `planos/Plano${n}.pdf`);
+    const files = [1,2,3,4,5,6,7,8].map(n => `planos/Plano${n}.pdf`);
     let idx = 0; // start at Plano1
 
     // Decide rendering strategy: iframe for desktop, PDF.js canvas for mobile.
@@ -1796,6 +1804,7 @@
 
     function updateView(){
       const url = files[idx];
+      const versioned = url + '?v=1';
       indicator.textContent = `Plano ${idx+1} de ${files.length}`;
       download.href = url;
       prevBtn.disabled = (idx === 0);
@@ -1803,13 +1812,13 @@
       if (useCanvas) {
         if (iframe) iframe.style.display = 'none';
         if (canvasWrap) canvasWrap.style.display = 'block';
-        renderCanvas(url);
+        renderCanvas(versioned);
       } else {
         if (canvasWrap) canvasWrap.style.display = 'none';
         if (iframe) {
           iframe.style.display = 'block';
-          // Try a set of fitting parameters for broader compatibility
-          iframe.src = url + '#view=FitH&zoom=page-width';
+          // Force first page and fit for broader compatibility
+          iframe.src = versioned + '#page=1&view=FitH&zoom=page-width';
         }
       }
     }
@@ -1914,6 +1923,6 @@
 </script>
 
 <!-- ES module viewer with ESM CDN to avoid bare specifier issues -->
-<script type="module" src="viewer.js?v=4"></script>
+<script type="module" src="viewer.js?v=5"></script>
 </body>
 </html>

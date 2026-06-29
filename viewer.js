@@ -1,11 +1,10 @@
-// GLB viewer using ES modules via esm.sh, similar to react-three-gltf-viewer setup
-// Renders images/Table.glb into #model3d-container with orbit controls
+// 3D viewer using ES modules via esm.sh
+// Renders images/Mueble.obj into #model3d-container with orbit controls
 
 import * as THREE from 'https://esm.sh/three@0.160.0';
 import { OrbitControls } from 'https://esm.sh/three@0.160.0/examples/jsm/controls/OrbitControls.js';
-import { GLTFLoader } from 'https://esm.sh/three@0.160.0/examples/jsm/loaders/GLTFLoader.js';
-import { DRACOLoader } from 'https://esm.sh/three@0.160.0/examples/jsm/loaders/DRACOLoader.js';
-import { KTX2Loader } from 'https://esm.sh/three@0.160.0/examples/jsm/loaders/KTX2Loader.js';
+import { OBJLoader } from 'https://esm.sh/three@0.160.0/examples/jsm/loaders/OBJLoader.js';
+import { MTLLoader } from 'https://esm.sh/three@0.160.0/examples/jsm/loaders/MTLLoader.js';
 
 (function initModelViewer(){
   const container = document.getElementById('model3d-container');
@@ -49,55 +48,148 @@ import { KTX2Loader } from 'https://esm.sh/three@0.160.0/examples/jsm/loaders/KT
   dir.position.set(3, 5, 2);
   dir.castShadow = false;
   scene.add(dir);
+  const amb = new THREE.AmbientLight(0xffffff, 0.25);
+  scene.add(amb);
 
   const controls = new OrbitControls(camera, renderer.domElement);
   controls.enableDamping = true;
   controls.enableZoom = true;
   controls.autoRotate = false;
   controls.autoRotateSpeed = 2.0;
-  const initialTarget = new THREE.Vector3(0, 0.5, 0);
+  const initialTarget = new THREE.Vector3(0, 0, 0);
   controls.target.copy(initialTarget);
   controls.saveState();
+  const objLoader = new OBJLoader();
+  const mtlLoader = new MTLLoader();
 
-  const loader = new GLTFLoader();
-  const draco = new DRACOLoader();
-  draco.setDecoderPath('https://unpkg.com/three@0.160.0/examples/jsm/libs/draco/');
-  loader.setDRACOLoader(draco);
-
-  const ktx2 = new KTX2Loader();
-  ktx2.setTranscoderPath('https://unpkg.com/three@0.160.0/examples/jsm/libs/basis/').detectSupport(renderer);
-  loader.setKTX2Loader(ktx2);
-
-  const MODEL_URL = 'images/Table.glb';
+  const MODEL_OBJ = 'images/Mueble.obj';
+  const MODEL_MTL = 'images/Mueble.mtl';
   let modelRoot = null;
-  loader.load(
-    MODEL_URL,
-    (gltf) => {
-      const model = gltf.scene;
-      modelRoot = model;
-      const box = new THREE.Box3().setFromObject(model);
-      const size = new THREE.Vector3();
-      box.getSize(size);
-      const maxDim = Math.max(size.x, size.y, size.z) || 1;
-      const scale = 1.2 / maxDim;
-      model.scale.setScalar(scale);
-      box.setFromObject(model);
-      const center = new THREE.Vector3();
-      box.getCenter(center);
-      model.position.sub(center);
 
-      // Slight lift if model sits below ground
-      model.position.y += 0.05;
+  // Ensure resources resolve relative to /images
+  objLoader.setPath('images/');
+  mtlLoader.setPath('images/');
+  mtlLoader.setResourcePath('images/');
+  // Prefer double-sided to avoid black faces when normals are flipped
+  if (mtlLoader.setMaterialOptions) {
+    mtlLoader.setMaterialOptions({ side: THREE.DoubleSide });
+  }
 
-      scene.add(model);
-      if (loadingEl) loadingEl.remove();
+  mtlLoader.load(
+    'Mueble.mtl',
+    (materials) => {
+      try { materials.preload(); } catch (e) {}
+      objLoader.setMaterials(materials);
+      objLoader.load(
+        'Mueble.obj',
+        (obj) => {
+          const model = obj;
+          modelRoot = model;
+
+          // Normalize texture color space when present
+          model.traverse((child) => {
+            if (!child.isMesh) return;
+            // Ensure geometry has normals
+            if (child.geometry && !child.geometry.attributes.normal) {
+              child.geometry.computeVertexNormals();
+            }
+            const mats = Array.isArray(child.material) ? child.material : [child.material];
+            if (mats.length === 0 || !mats[0]) {
+              child.material = new THREE.MeshStandardMaterial({ color: 0x8f8f8f, metalness: 0.1, roughness: 0.9, side: THREE.DoubleSide });
+            } else {
+              mats.forEach(m => {
+                if (!m) return;
+                if (m.map) {
+                  m.map.colorSpace = THREE.SRGBColorSpace;
+                  m.map.needsUpdate = true;
+                }
+                m.side = THREE.DoubleSide;
+                // Avoid pure black if no texture map
+                if (!m.map && m.color && m.color.r === 0 && m.color.g === 0 && m.color.b === 0) {
+                  m.color.set(0x888888);
+                }
+                m.needsUpdate = true;
+              });
+            }
+            child.castShadow = false;
+            child.receiveShadow = false;
+          });
+
+          // Scale and center model within view (center to origin)
+          const box = new THREE.Box3().setFromObject(model);
+          const size = new THREE.Vector3();
+          box.getSize(size);
+          const maxDim = Math.max(size.x, size.y, size.z) || 1;
+          const scale = 1.2 / maxDim;
+          model.scale.setScalar(scale);
+          box.setFromObject(model);
+          const center = new THREE.Vector3();
+          box.getCenter(center);
+          model.position.sub(center);
+
+          scene.add(model);
+
+          // Aim controls at model center for proper vertical centering
+          controls.target.set(0, 0, 0);
+          controls.update();
+
+          if (loadingEl) loadingEl.remove();
+        },
+        undefined,
+        (e) => {
+          console.error('OBJ load error', e);
+          if (loadingEl) {
+            loadingEl.textContent = 'No se pudo cargar el modelo 3D (images/Mueble.obj). Verifica la ruta y sirve el sitio por HTTP.';
+          }
+        }
+      );
     },
     undefined,
     (e) => {
-      console.error('GLB load error', e);
-      if (loadingEl) {
-        loadingEl.textContent = 'No se pudo cargar el modelo 3D (images/Table.glb). Verifica la ruta y sirve el sitio por HTTP.';
-      }
+      console.error('MTL load error', e);
+      // Fallback: try to load OBJ without materials
+      objLoader.load(
+        'Mueble.obj',
+        (obj) => {
+          const model = obj;
+          modelRoot = model;
+
+          model.traverse((child) => {
+            if (!child.isMesh) return;
+            if (child.geometry && !child.geometry.attributes.normal) {
+              child.geometry.computeVertexNormals();
+            }
+            const mats = Array.isArray(child.material) ? child.material : [child.material];
+            if (mats.length === 0 || !mats[0]) {
+              child.material = new THREE.MeshStandardMaterial({ color: 0x8f8f8f, metalness: 0.1, roughness: 0.9, side: THREE.DoubleSide });
+            } else {
+              mats.forEach(m => { if (m) { m.side = THREE.DoubleSide; if (!m.map && m.color && m.color.getHex() === 0x000000) m.color.set(0x888888); m.needsUpdate = true; } });
+            }
+          });
+
+          const box = new THREE.Box3().setFromObject(model);
+          const size = new THREE.Vector3();
+          box.getSize(size);
+          const maxDim = Math.max(size.x, size.y, size.z) || 1;
+          const scale = 1.2 / maxDim;
+          model.scale.setScalar(scale);
+          box.setFromObject(model);
+          const center = new THREE.Vector3();
+          box.getCenter(center);
+          model.position.sub(center);
+          scene.add(model);
+          controls.target.set(0, 0, 0);
+          controls.update();
+          if (loadingEl) loadingEl.remove();
+        },
+        undefined,
+        (err) => {
+          console.error('OBJ load error (fallback)', err);
+          if (loadingEl) {
+            loadingEl.textContent = 'No se pudo cargar el modelo 3D. Verifica las rutas images/Mueble.obj y images/Mueble.mtl.';
+          }
+        }
+      );
     }
   );
 
