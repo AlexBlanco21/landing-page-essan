@@ -3,24 +3,24 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>NÓRDIC 12 – Mesa de Noche Minimalista</title>
-<link rel="icon" href="images/green-sample.png" type="image/png">
+<title>HEXA AVOCADO – Envase ecológico para paltas</title>
+<link rel="icon" href="TRABAJO HEXA AVOCADO/hexaPresentation.jpg" type="image/jpeg">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
   :root {
-    --sand: #F5F0E8;
-    --sand-dark: #EDE6D8;
+    --sand: #F2F0E5;
+    --sand-dark: #D9DEC9;
     --ink: #1A1814;
     --ink-mid: #3D3A35;
     --ink-light: #7A756C;
-    --oak: #B8956A;
-    --oak-light: #D4B896;
-    --oak-pale: #F0E8D8;
+    --oak: #6F8F3D;
+    --oak-light: #B7C98B;
+    --oak-pale: #E5EBD8;
     --white: #FFFFFF;
-    --green: #4A6741;
-    --green-pale: #EBF0E8;
+    --green: #3F633B;
+    --green-pale: #E4EFE0;
     --radius-sm: 4px;
     --radius-md: 10px;
     --radius-lg: 18px;
@@ -114,7 +114,7 @@
     gap: 0;
     line-height: 1;
   }
-  .hero-brand-nordic {
+  .hero-brand-name {
     font-family: 'Inter', sans-serif;
     font-weight: 800;
     font-size: clamp(3rem, 6vw, 5.4rem);
@@ -122,7 +122,7 @@
     color: var(--ink);
     line-height: 1;
   }
-  .hero-brand-12 {
+  .hero-brand-product {
     font-family: 'Playfair Display', serif;
     font-weight: 500;
     font-size: clamp(3rem, 6vw, 5.4rem);
@@ -339,19 +339,19 @@
     column-gap: 1rem;
     max-width: 1100px;
     margin: 0 auto;
-  }
+    }
   .gallery-card {
     background: var(--oak-pale);
     border-radius: var(--radius-md);
     overflow: hidden;
-    display: block; /* block-level in columns for stability */
+    display: block;
     padding: 0.6rem;
     cursor: pointer;
     transition: transform .2s;
     width: 100%;
     break-inside: avoid; /* keep card intact across columns */
     -webkit-column-break-inside: avoid;
-    margin: 0 0 1rem; /* spacing between items vertically */
+    margin: 0;
   }
   .gallery-card:hover { transform: scale(1.02); }
   .gallery-card svg { opacity: 0.35; }
@@ -468,7 +468,7 @@
     color: rgba(255,255,255,0.3);
   }
   .planos-img { width: 100%; max-width: 520px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.12); box-shadow: 0 8px 24px rgba(0,0,0,0.25); background: rgba(255,255,255,0.02); }
-  .planos-frame { width: 100%; max-width: 520px; height: 640px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.12); box-shadow: 0 8px 24px rgba(0,0,0,0.25); background: rgba(255,255,255,0.02); display:block; vertical-align: top; margin: 0; }
+  .planos-frame { width: 100%; max-width: 520px; height: 640px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.12); box-shadow: 0 8px 24px rgba(0,0,0,0.25); background: rgba(255,255,255,0.02); display:block; margin: 0; }
   .planos-actions { display: flex; gap: .6rem; flex-wrap: wrap; justify-content: center; margin-top: 0; }
   .btn-ghost { background: transparent; color: var(--white); border: 1px solid rgba(255,255,255,0.14); padding: 0.55rem .9rem; border-radius: 8px; text-decoration: none; font-size: .85rem; }
   .btn-ghost:hover { border-color: var(--oak-light); color: var(--oak-light); }
@@ -534,23 +534,6 @@
   }
   .why-card p { font-size: 0.82rem; color: var(--ink-light); line-height: 1.6; }
 
-  /* ── MODELO 3D ── */
-  #modelo-3d { background: var(--sand); }
-  .model-viewport {
-    margin-top: 2.5rem;
-    background: var(--oak-pale);
-    border-radius: var(--radius-lg);
-    border: 1px solid var(--oak-light);
-    min-height: 420px;
-    position: relative;
-    overflow: hidden;
-  }
-  .model-viewport canvas { display: block; width: 100%; height: 100%; position: relative; z-index: 1; }
-  .model-loading {
-    position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
-    color: var(--ink-mid); font-size: 0.9rem; background: rgba(255,255,255,0.3);
-  }
-
   /* ── PERSONALIZACIÓN ── */
   #personalizacion { background: var(--white); }
   /* Make product options use full width on desktop too */
@@ -615,31 +598,6 @@
   }
   /* WhatsApp CTA shares primary button styling */
   .btn-whatsapp { display:inline-flex; align-items:center; gap:.5rem; }
-
-  /* Viewer control buttons */
-  .viewer-controls {
-    position: absolute;
-    right: .8rem;
-    bottom: .8rem;
-    display: flex;
-    gap: .4rem;
-    z-index: 10;
-    pointer-events: auto;
-  }
-  .vc-btn {
-    width: 38px; height: 38px;
-    border-radius: 50%;
-    background: rgba(0,0,0,0.75);
-    color: #fff;
-    border: 1px solid rgba(255,255,255,0.2);
-    display: inline-flex; align-items: center; justify-content: center;
-    font-weight: 700;
-    cursor: pointer;
-    transition: transform .15s, background .2s;
-    user-select: none;
-  }
-  .vc-btn:hover { transform: translateY(-1px); background: rgba(0,0,0,0.9); }
-  .vc-btn:active { transform: translateY(0); }
 
   /* ── VIDEO ── */
   #video { background: var(--ink); }
@@ -896,7 +854,7 @@
     .hero-bottom-bar { flex-direction: column; gap: 1rem; padding: 1.2rem 6%; }
     .hbb-item + .hbb-item { border-left: none; border-top: 1px solid rgba(255,255,255,0.12); padding-left: 0; padding-top: 1rem; }
     .desc-grid, .specs-layout, .mdf-grid, .sust-grid, .custom-layout { grid-template-columns: 1fr; gap: 2rem; }
-    .gallery-grid { column-count: 2; }
+    .gallery-grid { grid-template-columns: 1fr; max-width: 520px; }
     .gallery-frame { height: 240px; }
     .gallery-card.tall { grid-row: span 1; }
     .process-steps { grid-template-columns: 1fr 1fr; gap: 2rem; }
@@ -914,15 +872,15 @@
 
 <!-- NAV -->
 <nav>
-  <a href="#hero" class="nav-logo">NÓR<span>DIC</span> 12</a>
+  <a href="#hero" class="nav-logo">HEXA <span>AVOCADO</span></a>
   <ul class="nav-links">
     <li><a href="#galeria">Galería</a></li>
     <li><a href="#descripcion">Producto</a></li>
     <li><a href="#especificaciones">Specs</a></li>
-    <li><a href="#personalizacion">Opciones</a></li>
+    <li><a href="#personalizacion">Presentación</a></li>
     <li><a href="#faq">FAQ</a></li>
   </ul>
-  <a href="https://wa.me/51962311831?text=Buenos%20d%C3%ADas%2C%20quisiera%20tener%20mayor%20informaci%C3%B3n%20sobre%20Nordic%2012%20y%20sus%20precios" class="nav-cta">Solicitar cotización</a>
+  <a href="https://wa.me/51962311831?text=Buenos%20d%C3%ADas%2C%20quisiera%20conocer%20m%C3%A1s%20sobre%20Hexa%20Avocado" class="nav-cta">Solicitar información</a>
 </nav>
 
 <!-- 1. HERO -->
@@ -940,19 +898,19 @@
         </svg>
       </div>
       <div class="hero-brand-row">
-        <span class="hero-brand-nordic">NORDIC</span>
-        <span class="hero-brand-12">12</span>
+        <span class="hero-brand-name">HEXA</span>
+        <span class="hero-brand-product">AVOCADO</span>
       </div>
       <div class="hero-subtitle-line">
         <span class="dash"></span>
-        <span>Mesa de Noche</span>
+        <span>Envase ecológico para paltas</span>
         <span class="dash"></span>
       </div>
     </div>
 
     <!-- Headline + description -->
-    <h1 class="hero-headline">Diseño minimalista.<br>Ingeniería inteligente.</h1>
-    <p class="hero-desc">Más que una mesa de noche,<br>una pieza creada para transformar tu espacio.</p>
+    <h1 class="hero-headline">Protección sostenible.<br>Diseño que conecta.</h1>
+    <p class="hero-desc">Un envase modular de MDF diseñado para transportar, almacenar y exhibir paltas.</p>
 
     <!-- Feature badges -->
     <div class="hero-badges">
@@ -962,7 +920,7 @@
             <path d="M12 22c-4.4 0-8-3.6-8-8 0-4.4 8-12 8-12s8 7.6 8 12c0 4.4-3.6 8-8 8z"/>
           </svg>
         </div>
-        <div class="hero-badge-label">Diseño<br>moderno</div>
+        <div class="hero-badge-label">Protección<br>del fruto</div>
       </div>
       <div class="hero-badge">
         <div class="hero-badge-icon">
@@ -973,7 +931,7 @@
             <rect x="13" y="13" width="8" height="8" rx="1"/>
           </svg>
         </div>
-        <div class="hero-badge-label">Ensamble<br>a presión</div>
+        <div class="hero-badge-label">Ensamble<br>sin adhesivos</div>
       </div>
       <div class="hero-badge">
         <div class="hero-badge-icon">
@@ -983,7 +941,7 @@
             <path d="M8 14h8M8 17h5"/>
           </svg>
         </div>
-        <div class="hero-badge-label">Fabricación<br>CNC</div>
+        <div class="hero-badge-label">MDF<br>3 mm</div>
       </div>
       <div class="hero-badge">
         <div class="hero-badge-icon">
@@ -991,14 +949,14 @@
             <path d="M12 2L3 7v5c0 5.25 3.75 10.15 9 11.35C17.25 22.15 21 17.25 21 12V7L12 2z"/>
           </svg>
         </div>
-        <div class="hero-badge-label">Resistente<br>y duradera</div>
+        <div class="hero-badge-label">Reutilizable<br>y funcional</div>
       </div>
     </div>
 
     <!-- CTAs -->
     <div class="hero-actions">
-      <a href="https://wa.me/51962311831?text=Buenos%20d%C3%ADas%2C%20quisiera%20tener%20mayor%20informaci%C3%B3n%20sobre%20Nordic%2012%20y%20sus%20precios" class="btn-primary">Comprar ahora</a>
-      <a href="#descripcion" class="btn-secondary">Más información</a>
+      <a href="https://wa.me/51962311831?text=Buenos%20d%C3%ADas%2C%20quisiera%20m%C3%A1s%20informaci%C3%B3n%20sobre%20Hexa%20Avocado" class="btn-primary">Conocer el proyecto</a>
+      <a href="#descripcion" class="btn-secondary">Ver propuesta</a>
     </div>
 
   </div>
@@ -1006,7 +964,7 @@
   <!-- Right: product image -->
   <div class="hero-right">
     <!-- Default preview uses white variant -->
-    <img src="images/green-sample.png" alt="Mesa de noche NÓRDIC 12" class="hero-product-img" id="hero-img-slot" />
+    <img src="TRABAJO HEXA AVOCADO/hexaPresentation.jpg" alt="Presentación del envase Hexa Avocado para paltas" class="hero-product-img" id="hero-img-slot" />
   </div>
 
   <!-- Full-width bottom bar -->
@@ -1019,8 +977,8 @@
         <path d="M16 19L20 15" stroke="#D4B896" stroke-width="1.2"/>
       </svg>
       <div>
-        <div class="hbb-title">MDF 12 mm</div>
-        <div class="hbb-desc">Alta precisión, excelente acabado<br>y compromiso con la sostenibilidad.</div>
+        <div class="hbb-title">MDF 3 mm</div>
+        <div class="hbb-desc">Material ligero, preciso y adecuado<br>para un empaque responsable.</div>
       </div>
     </div>
     <div class="hbb-item">
@@ -1029,8 +987,8 @@
         <circle cx="16" cy="16" r="4" stroke="#D4B896" stroke-width="1.2" fill="none"/>
       </svg>
       <div>
-        <div class="hbb-title">Hecha con pasión,</div>
-        <div class="hbb-desc">pensada para durar.</div>
+        <div class="hbb-title">Diseñada para la cadena,</div>
+        <div class="hbb-desc">pensada para proteger cada palta.</div>
       </div>
     </div>
   </div>
@@ -1040,29 +998,21 @@
 <section id="galeria">
   <div class="gallery-header">
     <p class="section-eyebrow">Galería del producto</p>
-    <h2 class="section-title">Cada ángulo cuenta</h2>
+    <h2 class="section-title">Una solución que se entiende a simple vista</h2>
     
   </div>
   <div class="gallery-grid">
     <div class="gallery-card">
-      <div class="gallery-frame"><img src="images/frontal.jpeg" alt="Vista frontal" class="gallery-img" /></div>
-      <span class="gallery-label">Vista frontal</span>
+      <div class="gallery-frame"><img src="TRABAJO HEXA AVOCADO/hexaPresentation.jpg" alt="Presentación del envase para palta" class="gallery-img" /></div>
+      <span class="gallery-label">Presentación del producto</span>
     </div>
     <div class="gallery-card">
-      <div class="gallery-frame"><img src="images/lateral.jpeg" alt="Vista lateral" class="gallery-img" /></div>
-      <span class="gallery-label">Vista lateral</span>
+      <div class="gallery-frame"><img src="TRABAJO HEXA AVOCADO/envaseRealDentro.jpeg" alt="MVP del producto Hexa Avocado" class="gallery-img" /></div>
+      <span class="gallery-label">MVP del producto</span>
     </div>
     <div class="gallery-card">
-      <div class="gallery-frame"><img src="images/superior.jpeg" alt="Vista superior" class="gallery-img" /></div>
-      <span class="gallery-label">Vista superior</span>
-    </div>
-    <div class="gallery-card">
-      <div class="gallery-frame"><img src="images/trasera.jpeg" alt="Vista trasera" class="gallery-img" /></div>
-      <span class="gallery-label">Vista trasera</span>
-    </div>
-    <div class="gallery-card">
-      <div class="gallery-frame"><img src="images/desplegado.jpeg" alt="Vista desplegado" class="gallery-img" /></div>
-      <span class="gallery-label">Vista desplegado</span>
+      <div class="gallery-frame"><img src="TRABAJO HEXA AVOCADO/EnvaseRealBase.jpeg" alt="Base del producto Hexa Avocado" class="gallery-img" /></div>
+      <span class="gallery-label">Base del producto</span>
     </div>
   </div>
   
@@ -1073,37 +1023,37 @@
   <div class="desc-grid">
     <div class="desc-left">
       <p class="section-eyebrow">Descripción del producto</p>
-      <h2 class="section-title">NÓRDIC 12</h2>
+      <h2 class="section-title">HEXA AVOCADO</h2>
       <div class="divider"></div>
-      <p class="section-body">Descubre NÓRDIC 12, una mesa de noche diseñada para quienes buscan combinar funcionalidad, diseño y calidad en un solo producto. Fabricada con MDF de 12 mm mediante tecnología de fresado CNC de alta precisión, ofrece un acabado limpio, una estructura resistente y un estilo minimalista que se adapta fácilmente a dormitorios modernos, nórdicos o contemporáneos.</p>
+      <p class="section-body">Hexa Avocado es un envase ecológico fabricado en MDF de 3 mm para transportar, almacenar y exhibir paltas. Su diseño modular protege el fruto, facilita la manipulación y mejora la presentación comercial en supermercados y tiendas.</p>
       <div class="desc-callout">
-        <p>"Su innovador sistema de ensamblaje a presión elimina la necesidad de tornillos visibles, brindando una apariencia elegante y un armado sencillo."</p>
+        <p>"Una alternativa reutilizable al plástico de un solo uso: protege la palta y comunica una propuesta de consumo más responsable."</p>
       </div>
-      <p class="section-body" style="margin-top:1.5rem;">Además, cuenta con un compartimiento superior y una repisa inferior que permiten organizar libros, dispositivos electrónicos, accesorios o elementos decorativos, manteniendo tu espacio ordenado y funcional.</p>
+      <p class="section-body" style="margin-top:1.5rem;">El prototipo fue diseñado en CAD y fabricado mediante corte láser en una máquina Trotec Speedy 400. Las piezas se ensamblan sin adhesivos para facilitar el armado y el desmontaje.</p>
     </div>
     <div class="desc-right">
       <p class="section-eyebrow">Calidad que se nota</p>
-      <p class="section-body" style="margin-bottom:0;">En NÓRDIC 12, cada pieza ha sido diseñada digitalmente y mecanizada con precisión para garantizar un ajuste perfecto y una estructura estable.</p>
+      <p class="section-body" style="margin-bottom:0;">Cada pieza fue diseñada digitalmente y fabricada con precisión para conseguir un envase estable, ligero y fácil de manipular durante la cadena de comercialización.</p>
       <div class="quality-grid">
         <div class="quality-item">
           <div class="qi-icon">⚙️</div>
-          <h4>Fresado CNC</h4>
-          <p>Tolerancias de 0.1 mm para un ensamble perfecto sin holguras.</p>
+          <h4>Corte de precisión</h4>
+          <p>Fabricación digital con Trotec Speedy 400 para reproducir las piezas del prototipo.</p>
         </div>
         <div class="quality-item">
           <div class="qi-icon">🔩</div>
-          <h4>Sin tornillos</h4>
-          <p>Ensamblaje a presión que garantiza una apariencia limpia y elegante.</p>
+          <h4>Sin adhesivos</h4>
+          <p>El sistema de encaje permite ensamblar y desmontar el envase con facilidad.</p>
         </div>
         <div class="quality-item">
           <div class="qi-icon">📦</div>
-          <h4>Fácil armado</h4>
-          <p>Piezas numeradas y guía de armado incluida para instalación rápida.</p>
+          <h4>Fácil manipulación</h4>
+          <p>Una estructura ligera que favorece el transporte, el almacenamiento y la exhibición.</p>
         </div>
         <div class="quality-item">
           <div class="qi-icon">✨</div>
-          <h4>Acabado liso</h4>
-          <p>Superficie uniforme lista para lacado, melamina o cualquier acabado decorativo.</p>
+          <h4>Presentación atractiva</h4>
+          <p>Una forma diferenciada de proteger y mostrar la palta en el punto de venta.</p>
         </div>
       </div>
     </div>
@@ -1114,32 +1064,30 @@
 <section id="especificaciones">
   <div class="specs-layout">
     <div>
-      <p class="section-eyebrow">Ficha técnica</p>
-      <h2 class="section-title">Especificaciones</h2>
+      <p class="section-eyebrow">Plano de ensamble</p>
+      <h2 class="section-title">Documentación del prototipo</h2>
       <div class="divider" style="background:var(--oak-light);"></div>
       <table class="specs-table" id="specs-table">
-        <tr><td>Material</td><td>MDF de 12 mm</td></tr>
-        <tr><td>Proceso de fabricación</td><td>Fresado CNC</td></tr>
-        <tr><td>Acabado</td><td>Lijado fino (listo para pintar o lacar)</td></tr>
-        <tr><td>Tipo de unión</td><td>Ensamble a presión (sin tornillos)</td></tr>
-        <tr><td>Color</td><td>Natural o pintado</td></tr>
-        <tr><td>Peso aproximado</td><td>15 kg</td></tr>
-        <tr><td>Dimensiones</td><td>Alto (70cm) × Ancho (50cm) × Largo (50cm)</td></tr>
+        <tr><td>Material</td><td>MDF de 3 mm</td></tr>
+        <tr><td>Proceso de fabricación</td><td>Corte láser digital</td></tr>
+        <tr><td>Equipo utilizado</td><td>Trotec Speedy 400</td></tr>
+        <tr><td>Tipo de unión</td><td>Ensamble sin adhesivos</td></tr>
+        <tr><td>Uso</td><td>Transporte, almacenamiento y exhibición de paltas</td></tr>
+        <tr><td>Estado</td><td>Prototipo funcional académico</td></tr>
         <tr>
-          <td>Capacidad cubierta superior</td>
+          <td>Protección del fruto</td>
           <td>
-            20 kg (recomendado)
-            <div class="specs-meter" data-max="20" data-value="20"><div class="fill"></div></div>
+            Diseño orientado a evitar golpes y deformaciones
+            <div class="specs-meter" data-max="10" data-value="10"><div class="fill"></div></div>
           </td>
         </tr>
         <tr>
-          <td>Capacidad repisa inferior</td>
+          <td>Modularidad</td>
           <td>
-            10 kg (recomendado)
-            <div class="specs-meter" data-max="20" data-value="10"><div class="fill"></div></div>
+            Ensamble y desmontaje sencillo
+            <div class="specs-meter" data-max="10" data-value="10"><div class="fill"></div></div>
           </td>
         </tr>
-        <tr><td>Uso</td><td>Dormitorio</td></tr>
       </table>
       <button class="specs-note-btn" id="open-tech-note" aria-haspopup="dialog" aria-controls="modal-tech-note">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>
@@ -1155,11 +1103,11 @@
       </div>
       <div class="planos-actions">
         <button id="plano-prev" class="btn-ghost" type="button" aria-label="Plano anterior">←</button>
-        <span id="plano-indicator" style="align-self:center;font-size:.85rem;color:rgba(255,255,255,0.85)">Plano 1 de 8</span>
+        <span id="plano-indicator" style="align-self:center;font-size:.85rem;color:rgba(255,255,255,0.85)">Plano de ensamble</span>
         <button id="plano-next" class="btn-ghost" type="button" aria-label="Siguiente plano">→</button>
-        <a id="download-planos" class="btn-ghost" href="planos/Plano1.pdf" download>Descargar PDF</a>
+        <a id="download-planos" class="btn-ghost" href="TRABAJO HEXA AVOCADO/Plano de ensamble. 2pdf.pdf" download>Descargar PDF</a>
       </div>
-      <p>Planos de referencia</p>
+      <p>Plano de ensamble e imágenes del proceso</p>
       
     </div>
   </div>
@@ -1169,7 +1117,7 @@
 <section id="fabricacion">
   <p class="section-eyebrow">Proceso de fabricación</p>
   <h2 class="section-title">¿Cómo fue fabricada?</h2>
-  <p class="section-body">Del diseño CAD y modelado 3D a la programación CAM, fresado CNC, lijado, ensamble a presión y control final: cada etapa asegura precisión y calidad. Haz clic en cualquier paso para ver los detalles.</p>
+  <p class="section-body">Del diseño CAD al modelado 3D, la conversión a DXF, el corte láser, la limpieza y el ensamblaje: cada etapa convierte una idea de empaque sostenible en un prototipo listo para proteger paltas.</p>
 
   <div class="process-steps" id="process-steps">
     <!-- Steps generated from data via JS (progressive enhancement) -->
@@ -1177,31 +1125,31 @@
       <span class="step-num-badge">1</span>
       <div class="step-icon" aria-hidden="true">📐</div>
       <div class="step-label">Diseño CAD</div>
-      <p class="step-desc">Se realiza el diseño 3D con software CAD.</p>
+      <p class="step-desc">Se realiza el diseño de las piezas con software CAD.</p>
     </div>
     <div class="process-step" data-step="modelado" tabindex="0">
       <span class="step-num-badge">2</span>
       <div class="step-icon">📦</div>
       <div class="step-label">Modelado 3D</div>
-      <p class="step-desc">Modelo detallado de piezas y ensamble.</p>
+      <p class="step-desc">Modelo 3D detallado de las piezas y el ensamble.</p>
     </div>
-    <div class="process-step" data-step="cam" tabindex="0">
+    <div class="process-step" data-step="dxf" tabindex="0">
       <span class="step-num-badge">3</span>
-      <div class="step-icon">🧭</div>
-      <div class="step-label">Programación CAM</div>
-      <p class="step-desc">Trayectorias de herramienta para CNC.</p>
+      <div class="step-icon">📄</div>
+      <div class="step-label">Conversión a formato DXF</div>
+      <p class="step-desc">Exportación de las piezas en un formato compatible con corte láser.</p>
     </div>
-    <div class="process-step" data-step="fresado" tabindex="0">
+    <div class="process-step" data-step="laser" tabindex="0">
       <span class="step-num-badge">4</span>
-      <div class="step-icon">🛠️</div>
-      <div class="step-label">Fresado CNC</div>
-      <p class="step-desc">Corte en MDF 12 mm con fresadora.</p>
+      <div class="step-icon">✂️</div>
+      <div class="step-label">Corte láser</div>
+      <p class="step-desc">Corte de precisión en planchas de MDF de 3 mm.</p>
     </div>
-    <div class="process-step" data-step="lijado" tabindex="0">
+    <div class="process-step" data-step="limpieza" tabindex="0">
       <span class="step-num-badge">5</span>
       <div class="step-icon">🧰</div>
-      <div class="step-label">Lijado</div>
-      <p class="step-desc">Eliminación de rebabas y suavizado.</p>
+      <div class="step-label">Limpieza y rebabas</div>
+      <p class="step-desc">Limpieza de las piezas para retirar cenizas y rebabas del corte láser.</p>
     </div>
     <div class="process-step" data-step="ensamble" tabindex="0">
       <span class="step-num-badge">6</span>
@@ -1239,97 +1187,71 @@
 <!-- 6. POR QUÉ ELEGIRNOS -->
 <section id="por-que">
   <p class="section-eyebrow">Ventajas del producto</p>
-  <h2 class="section-title">¿Por qué elegir NÓRDIC 12?</h2>
+  <h2 class="section-title">¿Por qué elegir Hexa Avocado?</h2>
   <div class="why-grid">
     <div class="why-card">
       <div class="why-icon">🎨</div>
-      <h3>Diseño moderno y elegante</h3>
-      <p>Líneas limpias y estilo minimalista que combina con cualquier decoración de dormitorio.</p>
+      <h3>Alternativa al plástico</h3>
+      <p>Una propuesta ecológica para reducir el uso de envases plásticos de un solo uso.</p>
     </div>
     <div class="why-card">
       <div class="why-icon">⚙️</div>
-      <h3>Fabricación CNC de precisión</h3>
-      <p>Fresado CNC que garantiza ajuste perfecto y acabados de alta calidad en cada pieza.</p>
+      <h3>Fabricación digital</h3>
+      <p>Diseño CAD y corte láser que permiten fabricar piezas precisas y replicables.</p>
     </div>
     <div class="why-card">
       <div class="why-icon">🔩</div>
-      <h3>Ensamblaje a presión</h3>
-      <p>Sin tornillos visibles. Armado intuitivo que cualquier persona puede realizar en minutos.</p>
+      <h3>Ensamble sencillo</h3>
+      <p>Las piezas encajan sin adhesivos, facilitando el armado, desmontaje y reutilización.</p>
     </div>
     <div class="why-card">
       <div class="why-icon">📚</div>
-      <h3>Compartimientos funcionales</h3>
-      <p>Espacio superior y repisa inferior para mantener tus objetos siempre organizados.</p>
+      <h3>Protección para la palta</h3>
+      <p>La estructura ayuda a proteger el fruto durante la manipulación y el transporte.</p>
     </div>
     <div class="why-card">
       <div class="why-icon">💪</div>
-      <h3>Estructura firme y resistente</h3>
-      <p>MDF de 12 mm procesado con alta precisión para una estructura robusta y duradera.</p>
+      <h3>Ligero y funcional</h3>
+      <p>El MDF de 3 mm permite una solución liviana sin perder estabilidad en el armado.</p>
     </div>
     <div class="why-card">
       <div class="why-icon">🏠</div>
-      <h3>Ideal para cualquier espacio</h3>
-      <p>Perfecta para hogares, departamentos, dormitorios de estudiantes y espacios reducidos.</p>
+      <h3>Transporte y exhibición</h3>
+      <p>Diseñado para acompañar la cadena desde el almacenamiento hasta el punto de venta.</p>
     </div>
     <div class="why-card">
       <div class="why-icon">🧽</div>
-      <h3>Superficie fácil de limpiar</h3>
-      <p>Acabado liso que no acumula polvo y se limpia con un simple paño húmedo.</p>
+      <h3>Presentación diferenciada</h3>
+      <p>Su forma modular mejora la visibilidad del producto y la experiencia del consumidor.</p>
     </div>
   </div>
 </section>
 
-<!-- 7. MODELO 3D -->
-<section id="modelo-3d">
-  <p class="section-eyebrow">Visualización interactiva</p>
-  <h2 class="section-title">Modelo 3D interactivo</h2>
-  <p class="section-body">Explora NÓRDIC 12 desde todos los ángulos. Rota, acerca y examina cada detalle del mueble antes de adquirirlo.</p>
-  <div class="model-placeholder">
-    <div id="model3d-container" class="model-viewport">
-      <div class="model-loading" id="model3d-loading">Cargando modelo 3D…</div>
-      <div class="viewer-controls" aria-label="Controles del visor 3D">
-        <button class="vc-btn" id="vc-zoom-in" title="Acercarse">＋</button>
-        <button class="vc-btn" id="vc-zoom-out" title="Alejarse">－</button>
-        <button class="vc-btn" id="vc-rotate" title="Rotar">⟳</button>
-        <button class="vc-btn" id="vc-reset" title="Original">⤾</button>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- 8. PERSONALIZACIÓN -->
+<!-- 7. PERSONALIZACIÓN -->
 <section id="personalizacion">
   <p class="section-eyebrow">Opciones del producto</p>
-  <h2 class="section-title">Elige tu NÓRDIC 12</h2>
-  <p class="section-body">Personaliza tu mesa de noche según tu estilo y necesidades.</p>
+  <h2 class="section-title">Configura tu propuesta</h2>
+  <p class="section-body">Elige el acabado visual del envase para solicitar información sobre el proyecto.</p>
   <div class="custom-layout">
     <div class="custom-group custom-colors">
-      <h3>Color del acabado</h3>
+      <h3>Colores disponibles</h3>
       <!-- Swatches at left -->
       <div class="swatch-wrap">
         <div style="text-align:center">
-          <div class="swatch" data-variant="white-sample.png" data-name="Blanco" style="background:#F5F0E8; border: 2px solid #DDD;" title="Blanco" role="radio" aria-checked="false" tabindex="0"></div>
-          <p style="font-size:0.65rem;color:var(--ink-light);margin-top:0.4rem;">Blanco</p>
-        </div>
-        <div style="text-align:center">
-          <div class="swatch" data-variant="green-sample.png" data-name="Verde" style="background:#4A6741; border: 2px solid #DDD;" title="Verde" role="radio" aria-checked="true" aria-selected="true" tabindex="0"></div>
+          <div class="swatch" data-variant="envaseVerde.jpeg" data-name="Verde" style="background:#6F8F3D; border: 2px solid #DDD;" title="Verde" role="radio" aria-checked="true" aria-selected="true" tabindex="0"></div>
           <p style="font-size:0.65rem;color:var(--ink-light);margin-top:0.4rem;">Verde</p>
         </div>
         <div style="text-align:center">
-          <div class="swatch" data-variant="black-sample.png" data-name="Negro" style="background:#1A1814;" title="Negro" role="radio" aria-checked="false" tabindex="0"></div>
-          <p style="font-size:0.65rem;color:var(--ink-light);margin-top:0.4rem;">Negro</p>
+          <div class="swatch" data-variant="envaseMarron.jpeg" data-name="Marrón" style="background:#8B5E3C;" title="Marrón" role="radio" aria-checked="false" tabindex="0"></div>
+          <p style="font-size:0.65rem;color:var(--ink-light);margin-top:0.4rem;">Marrón</p>
         </div>
         <div style="text-align:center">
-          <div class="swatch" data-variant="madera-sample.png" data-name="Madera" style="background:#D4B896;" title="Madera" role="radio" aria-checked="false" tabindex="0"></div>
+          <div class="swatch" data-variant="envaseMadera.jpeg" data-name="Madera" style="background:#B8956A;" title="Madera" role="radio" aria-checked="false" tabindex="0"></div>
           <p style="font-size:0.65rem;color:var(--ink-light);margin-top:0.4rem;">Madera</p>
         </div>
         <div style="text-align:center">
-          <div class="swatch" data-variant="beige-sample.png" data-name="Beige" style="background:#A0785A;" title="Beige" role="radio" aria-checked="false" tabindex="0"></div>
-          <p style="font-size:0.65rem;color:var(--ink-light);margin-top:0.4rem;">Beige</p>
-        </div>
-        <div style="text-align:center">
-          <div class="swatch" data-variant="nogal-sample.png" data-name="Nogal" style="background:#5C3D28;" title="Nogal" role="radio" aria-checked="false" tabindex="0"></div>
-          <p style="font-size:0.65rem;color:var(--ink-light);margin-top:0.4rem;">Nogal</p>
+          <div class="swatch" data-variant="envaseCarmesi.jpeg" data-name="Carmesí" style="background:#9D3C4B;" title="Carmesí" role="radio" aria-checked="false" tabindex="0"></div>
+          <p style="font-size:0.65rem;color:var(--ink-light);margin-top:0.4rem;">Carmesí</p>
         </div>
       </div>
       <!-- Preview at right, original size (no cropping) -->
@@ -1340,14 +1262,7 @@
     </div>
 
     <div class="custom-group custom-config">
-      <h3>Configuración</h3>
-      <form id="config-form" class="config-chips" aria-label="Configuración del producto">
-        <label class="chip"><input type="checkbox" name="config" value="Sin Patas"> Sin Patas</label>
-        <label class="chip"><input type="checkbox" name="config" value="Sin cajón"> Sin cajón</label>
-        <label class="chip"><input type="checkbox" name="config" value="Sin Espejo"> Sin Espejo</label>
-        <label class="chip"><input type="checkbox" name="config" value="Con ruedas"> Con ruedas</label>
-      </form>
-      <a id="btn-pedir" class="btn-primary btn-whatsapp" role="button" aria-label="Pedir mesa por WhatsApp">Pedir mesa</a>
+      <a id="btn-pedir" class="btn-primary btn-whatsapp" role="button" aria-label="Solicitar información por WhatsApp">Solicitar información</a>
     </div>
   </div>
 </section>
@@ -1356,12 +1271,12 @@
 <section id="video">
   <p class="section-eyebrow">Proceso de fabricación</p>
   <h2 class="section-title">Ve cómo se hace</h2>
-  <p class="section-body">Un vistazo al proceso completo: desde el corte CNC hasta el ensamble final. Transparencia total en nuestra fabricación.</p>
+  <p class="section-body">Un vistazo al proceso completo: desde el diseño CAD y la conversión a DXF hasta el corte láser y el ensamble final. Transparencia total en nuestra fabricación.</p>
   <div class="video-frame">
-    <video controls preload="metadata" poster="images/green-sample.png" playsinline>
-      <source src="videos/fabricacion.mp4" type="video/mp4" />
+    <video controls preload="metadata" poster="TRABAJO HEXA AVOCADO/hexaPresentation.jpg" playsinline>
+      <source src="TRABAJO HEXA AVOCADO/fabricacionEnvase.mp4" type="video/mp4" />
       Tu navegador no soporta el video HTML5. Puedes descargarlo
-      <a href="videos/fabricacion.mp4">aquí</a>.
+      <a href="TRABAJO HEXA AVOCADO/fabricacionEnvase.mp4">aquí</a>.
     </video>
   </div>
 </section>
@@ -1371,35 +1286,35 @@
   <div class="mdf-grid">
     <div>
       <p class="section-eyebrow">Material</p>
-      <h2 class="section-title">¿Por qué MDF de 12 mm?</h2>
+      <h2 class="section-title">¿Por qué MDF de 3 mm?</h2>
       <div class="divider"></div>
-      <p class="section-body">El MDF (Medium Density Fiberboard) es el material preferido para muebles de diseño moderno por sus propiedades únicas de estabilidad y acabado.</p>
+      <p class="section-body">El MDF de 3 mm ofrece una base ligera y versátil para fabricar un envase ecológico mediante herramientas de fabricación digital.</p>
       <ul class="mdf-list">
-        <li>Buena estabilidad dimensional — no se deforma con cambios de temperatura.</li>
-        <li>Superficie perfectamente lisa, ideal para acabados de alta calidad.</li>
-        <li>Fácil mantenimiento: limpieza con paño ligeramente húmedo.</li>
-        <li>Ideal para muebles modernos y de líneas rectas como NÓRDIC 12.</li>
-        <li>Compatible con todo tipo de acabados decorativos: lacado, vinilo, melamina.</li>
+        <li>Material ligero para facilitar la manipulación del envase.</li>
+        <li>Formato compatible con corte láser de alta precisión.</li>
+        <li>Permite producir piezas modulares y fáciles de ensamblar.</li>
+        <li>Ayuda a reducir el uso de plástico de un solo uso.</li>
+        <li>Puede integrarse en propuestas de transporte y exhibición de paltas.</li>
       </ul>
     </div>
     <div class="mdf-visual">
       <p class="section-eyebrow">En números</p>
       <div class="mdf-stat-grid">
         <div class="mdf-stat">
-          <div class="big">12</div>
+          <div class="big">3</div>
           <div class="sm">mm de espesor</div>
         </div>
         <div class="mdf-stat">
-          <div class="big">±0.1</div>
-          <div class="sm">mm de tolerancia</div>
+          <div class="big">400</div>
+          <div class="sm">Trotec Speedy</div>
         </div>
         <div class="mdf-stat">
-          <div class="big">680</div>
-          <div class="sm">kg/m³ densidad</div>
+          <div class="big">1</div>
+          <div class="sm">prototipo funcional</div>
         </div>
         <div class="mdf-stat">
-          <div class="big">100%</div>
-          <div class="sm">pintable</div>
+          <div class="big">0</div>
+          <div class="sm">adhesivos necesarios</div>
         </div>
       </div>
     </div>
@@ -1410,13 +1325,13 @@
 <section id="sostenibilidad">
   <p class="section-eyebrow">Compromiso ambiental</p>
   <h2 class="section-title">Diseño responsable</h2>
-  <p class="section-body">En NÓRDIC 12 creemos que un buen diseño también debe ser responsable con el medio ambiente. Nuestro proceso está pensado para aprovechar al máximo los recursos y reducir desperdicios.</p>
+  <p class="section-body">Hexa Avocado nace como respuesta al impacto de los envases plásticos de un solo uso. El proceso busca aprovechar el material y ofrecer una alternativa reutilizable para la cadena de comercialización de paltas.</p>
   <div class="sust-grid">
     <div class="sust-card">
       <div class="sust-icon">♻️</div>
       <div>
         <h4>Optimización del material</h4>
-        <p>Cada pieza se distribuye estratégicamente sobre el tablero de MDF para minimizar el desperdicio durante el corte CNC, aprovechando al máximo cada lámina de material.</p>
+        <p>Cada pieza se distribuye estratégicamente sobre el tablero de MDF para minimizar el desperdicio durante el corte láser, aprovechando al máximo cada lámina de material.</p>
       </div>
     </div>
     <div class="sust-card">
@@ -1437,12 +1352,12 @@
       <div class="sust-icon">🌿</div>
       <div>
         <h4>Proceso limpio</h4>
-        <p>La tecnología CNC trabaja con precisión mínimizando polvo y residuos en comparación con métodos de corte tradicionales.</p>
+        <p>El corte láser trabaja con precisión, minimizando el desperdicio y los residuos durante la fabricación.</p>
       </div>
     </div>
     <div class="sust-tagline">
       Porque cuidar tu hogar también significa cuidar el planeta.<br>
-      <span style="font-size:0.9rem;opacity:0.8;">NÓRDIC 12 — diseño inteligente y uso responsable de los recursos. 🌿</span>
+      <span style="font-size:0.9rem;opacity:0.8;">HEXA AVOCADO — diseño inteligente y uso responsable de los recursos. 🌿</span>
     </div>
   </div>
 </section>
@@ -1460,7 +1375,7 @@
   <div class="reviews-grid">
     <div class="review-card">
       <div class="review-stars">★★★★★</div>
-      <p class="review-text">"Excelente acabado y muy fácil de ensamblar. No podía creer lo bien que quedó en mi dormitorio, parece sacada de una revista de decoración."</p>
+      <p class="review-text">"El prototipo demuestra que un empaque puede proteger la palta y, al mismo tiempo, tener una presentación atractiva."</p>
       <div class="reviewer">
         <div class="reviewer-avatar">CM</div>
         <div>
@@ -1471,7 +1386,7 @@
     </div>
     <div class="review-card">
       <div class="review-stars">★★★★★</div>
-      <p class="review-text">"Perfecta para espacios pequeños. La repisa inferior es super útil para guardar libros y el cajón tiene el tamaño justo para el cargador y audífonos."</p>
+      <p class="review-text">"El envase protege las paltas y su diseño modular facilita la manipulación durante el transporte."</p>
       <div class="reviewer">
         <div class="reviewer-avatar">RA</div>
         <div>
@@ -1482,7 +1397,7 @@
     </div>
     <div class="review-card">
       <div class="review-stars">★★★★★</div>
-      <p class="review-text">"La calidad del corte CNC se nota en cada pieza. Todo encajó perfectamente sin necesidad de martillo ni fuerza. Totalmente recomendada."</p>
+      <p class="review-text">"La calidad del corte láser se nota en cada pieza. Todo encajó perfectamente sin necesidad de martillo ni fuerza. Totalmente recomendada."</p>
       <div class="reviewer">
         <div class="reviewer-avatar">VL</div>
         <div>
@@ -1502,27 +1417,27 @@
   <div class="faq-layout">
     <div class="faq-item">
       <button class="faq-q" onclick="toggleFaq(this)">¿Necesita tornillos para armarse? <span class="arrow">▼</span></button>
-      <div class="faq-a">No. NÓRDIC 12 utiliza un sistema de ensamblaje a presión que no requiere tornillos ni herramientas especiales. Cada pieza encaja perfectamente gracias a la precisión del corte CNC.</div>
+      <div class="faq-a">No. Hexa Avocado utiliza un sistema de encaje que no requiere adhesivos. Cada pieza se une gracias a la precisión del diseño y del corte digital.</div>
     </div>
     <div class="faq-item">
-      <button class="faq-q" onclick="toggleFaq(this)">¿Cómo se limpia la mesa? <span class="arrow">▼</span></button>
-      <div class="faq-a">La superficie lisa del MDF facilita la limpieza. Basta con un paño ligeramente húmedo. Evita el uso de químicos agresivos, agua en exceso o estropajos abrasivos.</div>
+      <button class="faq-q" onclick="toggleFaq(this)">¿Cómo se limpia el envase? <span class="arrow">▼</span></button>
+      <div class="faq-a">Retira el producto y limpia el envase con un paño seco o ligeramente húmedo. Evita mojarlo en exceso, ya que el MDF estándar no es impermeable.</div>
     </div>
     <div class="faq-item">
       <button class="faq-q" onclick="toggleFaq(this)">¿Cuánto peso soporta? <span class="arrow">▼</span></button>
-      <div class="faq-a">La capacidad de carga está estimada bajo distribución uniforme del peso. Se recomienda evitar cargas puntuales excesivas o impactos sobre la superficie para preservar la estructura. Consulta la ficha técnica para el dato exacto.</div>
+      <div class="faq-a">El prototipo está pensado para contener y proteger paltas durante su manipulación. La cantidad final depende del tamaño del fruto y debe validarse antes de una producción comercial.</div>
     </div>
     <div class="faq-item">
       <button class="faq-q" onclick="toggleFaq(this)">¿Es resistente a la humedad? <span class="arrow">▼</span></button>
-      <div class="faq-a">El MDF estándar no es impermeable. Se recomienda mantenerla alejada de fuentes de humedad directa. Para zonas con alta humedad, consulta las opciones de acabado hidrófugo disponibles.</div>
+      <div class="faq-a">El MDF estándar no es impermeable. Para uso prolongado o ambientes húmedos se debe evaluar un acabado protector y validar su compatibilidad con el contacto indirecto con alimentos.</div>
     </div>
     <div class="faq-item">
       <button class="faq-q" onclick="toggleFaq(this)">¿Viene armada o en piezas? <span class="arrow">▼</span></button>
-      <div class="faq-a">NÓRDIC 12 se entrega desarmada en un paquete compacto junto con la guía de ensamblaje. El proceso de armado es sencillo y puede realizarse sin herramientas en aproximadamente 15-20 minutos.</div>
+      <div class="faq-a">Se plantea como un envase modular que puede transportarse desarmado y ensamblarse sin adhesivos, reduciendo el volumen de almacenamiento.</div>
     </div>
     <div class="faq-item">
       <button class="faq-q" onclick="toggleFaq(this)">¿Cuánto demora el envío? <span class="arrow">▼</span></button>
-      <div class="faq-a">El tiempo de producción y despacho es de 3 a 7 días hábiles según el acabado elegido. Los tiempos de entrega varían según tu ubicación. Consulta disponibilidad por WhatsApp.</div>
+      <div class="faq-a">El prototipo pertenece a un proyecto académico. Para conocer la disponibilidad de fabricación o una adaptación comercial, escríbenos por WhatsApp.</div>
     </div>
   </div>
 </section>
@@ -1530,8 +1445,8 @@
 <!-- 14. CONTACTO -->
 <section id="contacto">
   <p class="section-eyebrow">Contáctanos</p>
-  <h2 class="section-title">¿Listo para transformar tu espacio?</h2>
-  <p class="section-body">Escríbenos por el canal que prefieras — respondemos en menos de 24 horas.</p>
+  <h2 class="section-title">¿Quieres conocer la propuesta?</h2>
+  <p class="section-body">Escríbenos por el canal que prefieras para conversar sobre el prototipo y sus posibilidades de fabricación.</p>
   <div class="contact-channels">
     <a href="https://wa.me/51962311831" class="channel-btn ch-whatsapp">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
@@ -1555,8 +1470,8 @@
 <!-- FOOTER -->
 <footer>
   <div>
-    <div class="footer-brand">NÓR<span>DIC</span> 12</div>
-    <div class="footer-tagline">Diseño inteligente, precisión en cada detalle.</div>
+    <div class="footer-brand">HEXA <span>AVOCADO</span></div>
+    <div class="footer-tagline">Diseño sostenible, protección en cada recorrido.</div>
   </div>
   <div class="footer-links">
     <a href="policies.html#garantia">Garantía</a>
@@ -1564,7 +1479,7 @@
     <a href="policies.html#terminos">Términos y condiciones</a>
     <a href="policies.html#privacidad">Política de privacidad</a>
   </div>
-  <div class="footer-copy">© 2025 NÓRDIC 12. Todos los derechos reservados.</div>
+  <div class="footer-copy">© 2026 Hexa Avocado. Proyecto académico ESAN.</div>
 </footer>
 
 <script>
@@ -1613,10 +1528,8 @@
   // Color preview: swap full image by selected variant
   (function colorPreviewSwap(){
     const preview = document.getElementById('color-preview-img');
-    const heroImg = document.getElementById('hero-img-slot');
-    const video = document.querySelector('#video video');
-    const basePath = 'images/';
-    const defaultVariant = 'green-sample.png';
+    const basePath = 'TRABAJO HEXA AVOCADO/';
+    const defaultVariant = 'envaseVerde.jpeg';
 
     const swatches = Array.from(document.querySelectorAll('.swatch[data-variant]'));
 
@@ -1626,8 +1539,6 @@
     function applyVariant(fileName){
       const src = basePath + fileName + '?v=1';
       if (preview) preview.src = src;
-      if (heroImg) heroImg.src = src;
-      if (video) video.setAttribute('poster', src);
     }
 
     function selectSwatch(el){
@@ -1645,7 +1556,6 @@
 
     // Fallback to default image if any target fails to load
     if (preview) preview.addEventListener('error', () => { preview.src = basePath + defaultVariant + '?v=1'; });
-    if (heroImg) heroImg.addEventListener('error', () => { heroImg.src = basePath + defaultVariant + '?v=1'; });
 
     swatches.forEach(sw => {
       sw.addEventListener('click', () => selectSwatch(sw));
@@ -1659,13 +1569,8 @@
 
     // Build WhatsApp message based on current selections
     const pedirBtn = document.getElementById('btn-pedir');
-    const configForm = document.getElementById('config-form');
     function buildMessage(){
-      const checks = Array.from(configForm?.querySelectorAll('input[type="checkbox"]')||[])
-        .filter(c=>c.checked)
-        .map(c=>`• ${c.value}`);
-      const opciones = checks.length ? ` con:\n${checks.join('\n')}` : '';
-      const saludo = 'Buenos días, quisiera una Nordic 12 en color ' + selectedColorName + opciones;
+      const saludo = 'Buenos días, quisiera conocer más sobre Hexa Avocado, con acabado ' + selectedColorName;
       return encodeURIComponent(saludo);
     }
     pedirBtn?.addEventListener('click', ()=>{
@@ -1709,9 +1614,9 @@
             <button class="close-btn" id="close-tech-note">Cerrar</button>
           </div>
           <div class="modal-body">
-            <p><strong>Capacidad recomendada:</strong> 20 kg en cubierta superior y 10 kg en repisa inferior, con <em>carga uniformemente distribuida</em>.</p>
-            <p><strong>Peso aproximado del mueble:</strong> 15 kg. Evitar impactos, arrastres y cargas puntuales concentradas en bordes.</p>
-            <p><strong>Uso previsto:</strong> dormitorio. Mantener alejado de humedad directa. Si se pinta o laquea, seguir las recomendaciones del fabricante del acabado.</p>
+            <p><strong>Material:</strong> MDF de 3 mm, seleccionado para obtener un envase ligero y fabricable mediante corte digital.</p>
+            <p><strong>Uso previsto:</strong> transporte, almacenamiento y exhibición de paltas. Validar la capacidad final según el tamaño y peso del fruto.</p>
+            <p><strong>Recomendación:</strong> mantener alejado de humedad directa y evaluar un acabado protector antes de una producción comercial.</p>
           </div>
           <div class="modal-actions"><button class="close-btn" id="close-tech-note-2">Entendido</button></div>
         </div>
@@ -1740,7 +1645,13 @@
     const download = document.getElementById('download-planos');
     if (!iframe || !prevBtn || !nextBtn || !indicator || !download) return;
 
-    const files = [1,2,3,4,5,6,7,8].map(n => `planos/Plano${n}.pdf`);
+    const files = [
+      { label: 'Plano de ensamble', url: 'TRABAJO HEXA AVOCADO/Plano de ensamble. 2pdf.pdf' },
+      { label: 'Imagen 1', url: 'TRABAJO HEXA AVOCADO/Imagen 1.pdf' },
+      { label: 'Imagen 2', url: 'TRABAJO HEXA AVOCADO/Imagen 2.pdf' },
+      { label: 'Imagen 3', url: 'TRABAJO HEXA AVOCADO/Imagen 3.pdf' },
+      { label: 'Imagen 4', url: 'TRABAJO HEXA AVOCADO/Imagen 4.pdf' }
+    ];
     let idx = 0; // start at Plano1
 
     // Decide rendering strategy: iframe for desktop, PDF.js canvas for mobile.
@@ -1803,10 +1714,11 @@
     }
 
     function updateView(){
-      const url = files[idx];
+      const url = files[idx].url;
       const versioned = url + '?v=1';
-      indicator.textContent = `Plano ${idx+1} de ${files.length}`;
+      indicator.textContent = `${files[idx].label} (${idx+1} de ${files.length})`;
       download.href = url;
+      download.download = files[idx].label + '.pdf';
       prevBtn.disabled = (idx === 0);
       nextBtn.disabled = (idx === files.length - 1);
       if (useCanvas) {
@@ -1853,27 +1765,27 @@
       cad: {
         emoji: '📐',
         title: 'Diseño CAD',
-        html: '<p>Se realiza el diseño 3D de la mesa de noche utilizando software CAD. Aquí se definen medidas, tolerancias y uniones a presión.</p>'
+        html: '<p>Se desarrolla el diseño CAD del envase, definiendo la geometría de las piezas, los encajes y la forma de proteger las paltas.</p>'
       },
       modelado: {
         emoji: '📦',
         title: 'Modelado 3D',
-        html: '<p>Se desarrolla el modelo 3D detallado de todas las piezas y el ensamble para validar interferencias y estabilidad.</p>'
+        html: '<p>Se desarrolla el diseño detallado de todas las piezas y el ensamble para validar interferencias y estabilidad.</p>'
       },
-      cam: {
-        emoji: '🧭',
-        title: 'Programación CAM',
-        html: '<p>Se generan las trayectorias de herramienta (G-code) para el fresado CNC optimizando tiempos, acabados y uso del material.</p>'
+      dxf: {
+        emoji: '📄',
+        title: 'Conversión a formato DXF',
+        html: '<p>Se exportan las piezas diseñadas en un archivo DXF compatible con el equipo de corte láser.</p>'
       },
-      fresado: {
-        emoji: '🛠️',
-        title: 'Fresado CNC',
-        html: '<p>Se realiza el corte de las piezas en MDF de 12 mm mediante fresadora CNC con precisión milimétrica.</p>'
+      laser: {
+        emoji: '✂️',
+        title: 'Corte láser',
+        html: '<p>Las piezas se cortan en planchas de MDF de 3 mm utilizando la máquina Trotec Speedy 400.</p>'
       },
-      lijado: {
+      limpieza: {
         emoji: '🧰',
-        title: 'Lijado',
-        html: '<p>Se lijan las piezas para eliminar rebabas, suavizar cantos y mejorar el acabado superficial.</p>'
+        title: 'Limpieza y rebabas',
+        html: '<p>Se limpian las piezas cortadas para eliminar cenizas y rebabas ligeras producidas por el corte láser.</p>'
       },
       ensamble: {
         emoji: '🧩',
@@ -1888,7 +1800,7 @@
       producto: {
         emoji: '📦',
         title: 'Producto terminado',
-        html: '<p>Mesa de noche lista para su uso o comercialización, con empaque de protección y guía de ensamblaje.</p>'
+        html: '<p>Envase ecológico listo para validarse en transporte, almacenamiento y exhibición de paltas.</p>'
       }
     };
     const card = document.getElementById('process-detail-card');
@@ -1922,7 +1834,5 @@
   })();
 </script>
 
-<!-- ES module viewer with ESM CDN to avoid bare specifier issues -->
-<script type="module" src="viewer.js?v=5"></script>
 </body>
 </html>
